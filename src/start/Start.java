@@ -31,7 +31,7 @@ public class Start {
     public static void main(String[] args) {
 
         AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveFactory.factorial(750);
-        System.out.println("result: " + factor.result().getValue());
+        System.out.println("result:" + factor.result().getValue());
         
     }
     
