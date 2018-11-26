@@ -13,6 +13,7 @@ import algorithm.impl.number.ResultBigDecimal;
 import algorithm.impl.settlement.Settlement;
 import algorithm.impl.settlement.SettlementsAggregator;
 import algorithm.impl.settlement.NodeSettlement;
+import algorithm.impl.settlement.ResultSettlement;
 import java.util.List;
 import algorithm.node.NodeAlgorithm;
 import ext.Extension;
@@ -43,6 +44,16 @@ public class Start {
         AlgorithmRecursive<File, List<File>> filesByName = 
                 AlgorithmRecursiveFactory.aggregateFilesByName(dir, "nameFile");
         System.out.println("result:" + filesByName.result().getValue());
+        
+        Settlement settlement = SettlementsAggregator.get("123").iterator().next();
+        AlgorithmRecursive<Settlement, ResultSettlement> search = AlgorithmRecursive
+                .mutableResultBuilder(new NodeSettlement(settlement), new ResultSettlement())
+                .executeIf(a -> a.data().getSearch().equals("yes"))
+                .finishIf(a -> a.data().getSearch().equals("yes"))
+                .toExecute((a, b) -> b.setSettlement(a))
+                .build();
+        
+        System.out.println("result:" + search.result().getValue());
     }
     
 }
