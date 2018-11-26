@@ -29,32 +29,9 @@ public class Start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*Settlement settlement = SettlementsAggregator.get("123").iterator().next();
-        NodeAlgorithm<Settlement> start = new NodeSettlement(settlement);
-        AlgorithmRecursive<Settlement, List<Settlement>> searcher = 
-                AlgorithmRecursive.aggregateResultBuilder(new NodeSettlement(settlement))
-                .executeIf(a -> a.data().getSearch().contains("yes"))
-                .finishIf(a -> false)
-                .limitNumberIterations(0)
-                .toExecute((a, b) -> b.add(a))
-                .build();
-        
-        System.out.println("search: " + searcher.result().getValue());
-        System.out.println("number: " + searcher.result().getNumberIteration());*/
-        File dir = new File("C:\\$RECYCLE.BIN");
-        AlgorithmRecursive<File, List<File>> factor = 
-                AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
-                .executeIf(node -> (node.nodes() == null || node.nodes().isEmpty()))
-                .finishIf(a -> false)
-                .limitNumberIterations(0)
-                .toExecute((a, b) -> b.add(a))
-                .build();
-        
-        System.out.println("search: " + factor.result().getValue().size());
-        System.out.println("number: " + factor.result().getNumberIteration());
-        
-        AlgorithmRecursive<Integer, BigDecimal> factor2 = AlgorithmRecursiveFactory.factorial(949);
-        System.out.println("factor2: " + factor2.result().getValue());
+
+        AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveFactory.factorial(750);
+        System.out.println("result: " + factor.result().getValue());
         
     }
     
