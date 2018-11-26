@@ -15,6 +15,7 @@ import algorithm.impl.settlement.SettlementsAggregator;
 import algorithm.impl.settlement.NodeSettlement;
 import java.util.List;
 import algorithm.node.NodeAlgorithm;
+import ext.Extension;
 import java.io.File;
 import java.math.BigDecimal;
 import util.FileUtil;
@@ -30,9 +31,18 @@ public class Start {
      */
     public static void main(String[] args) {
 
-        AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveFactory.factorial(750);
+        AlgorithmRecursive<Integer, BigDecimal> factor = 
+                AlgorithmRecursiveFactory.factorial(750);
         System.out.println("result:" + factor.result().getValue());
         
+        File dir = new File("C://dev");
+        AlgorithmRecursive<File, List<File>> filesByExtension = 
+                AlgorithmRecursiveFactory.aggregateFilesByExtension(dir, Extension.JSON);
+        System.out.println("result:" + filesByExtension.result().getValue());
+        
+        AlgorithmRecursive<File, List<File>> filesByName = 
+                AlgorithmRecursiveFactory.aggregateFilesByName(dir, "nameFile");
+        System.out.println("result:" + filesByName.result().getValue());
     }
     
 }
