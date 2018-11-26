@@ -22,6 +22,7 @@ public final class AlgorithmRecursiveFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFiles(File dir) {
         return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+                        .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()))
                         .toExecute((file,result) -> result.add(file))
                         .build();
@@ -29,6 +30,7 @@ public final class AlgorithmRecursiveFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByName(File dir, String name) {
         return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+                        .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && node.data().getName().contains(name))
                         .toExecute((file,result) -> result.add(file))
@@ -37,6 +39,7 @@ public final class AlgorithmRecursiveFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByExtension(File dir, Extension extension) {
         return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+                        .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && Extension.ext(node.data()) == extension)
                         .toExecute((file,result) -> result.add(file))
@@ -45,6 +48,7 @@ public final class AlgorithmRecursiveFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByExtensions(File dir, Set<Extension> extension) {
         return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+                        .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && extension.contains(Extension.ext(node.data())))
                         .toExecute((file,result) -> result.add(file))
