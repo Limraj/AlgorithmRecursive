@@ -21,11 +21,11 @@ public interface ModifierResultRecursive<D, R> {
     boolean hasBeenExceeded(int limit);
     ResultRecursive<R> snapshot();
     
-    public static <D, R> ModifierResultRecursive<D, R> mutableResultRecursive(GenInstance<R> instanceGenerator, BiConsumer<D, R> toExecute) {
-        return new MutableResultRecursive(instanceGenerator, toExecute);
+    static <D, R> ModifierResultRecursive<D, R> mutableResultRecursive(GenInstance<R> instanceGenerator, BiConsumer<D, R> toExecute) {
+        return new MutableResultRecursive<>(instanceGenerator, toExecute);
     }
     
-    public static <D, R> ModifierResultRecursive<D, R> immutableResultRecursive(R result, BiFunction<D, R, R> toExecute) {
+    static <D, R> ModifierResultRecursive<D, R> immutableResultRecursive(R result, BiFunction<D, R, R> toExecute) {
         return new ImmutableResultRecursive<>(result, toExecute);
     }
 }
