@@ -6,7 +6,7 @@
 package algorithm;
 
 import algorithm.config.AlgorithmRecursiveConfiguration;
-import algorithm.modifier.ImmutableResultRecursive;
+import algorithm.modifier.ModifierResultRecursive;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import algorithm.node.NodeAlgorithm;
@@ -21,7 +21,7 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
     
     private Predicate<NodeAlgorithm<D>> executeIf;
     private Predicate<NodeAlgorithm<D>> finishIf;
-    private BiFunction<D, R, R> executeForImmutableResult;
+    private BiFunction<D, R, R> toExecute;
     private int limitNumberIterations;
     private final NodeAlgorithm<D> start;
     private final R result;
@@ -42,7 +42,7 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
     }
 
     public AlgorithmRecursiveImmutableResultBuilder<D, R> toExecute(BiFunction<D, R, R> toExecute) {
-        this.executeForImmutableResult = toExecute;
+        this.toExecute = toExecute;
         return this;
     }
     
@@ -57,6 +57,6 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursive<>(config, new ImmutableResultRecursive<>(result, executeForImmutableResult));
+        return new AlgorithmRecursive<>(config, ModifierResultRecursive.immutableResultRecursive(result, toExecute));
     }
 }

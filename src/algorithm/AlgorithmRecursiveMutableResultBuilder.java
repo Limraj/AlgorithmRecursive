@@ -6,7 +6,8 @@
 package algorithm;
 
 import algorithm.config.AlgorithmRecursiveConfiguration;
-import algorithm.modifier.MutableResultRecursive;
+import algorithm.modifier.GenInstance;
+import algorithm.modifier.ModifierResultRecursive;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import algorithm.node.NodeAlgorithm;
@@ -19,16 +20,16 @@ import algorithm.node.NodeAlgorithm;
  */
 public class AlgorithmRecursiveMutableResultBuilder<D, R> {
     
+    private final GenInstance<R> instanceGenerator;
+    private final NodeAlgorithm<D> start;
     private Predicate<NodeAlgorithm<D>> executeIf;
     private Predicate<NodeAlgorithm<D>> finishIf;
-    private BiConsumer<D, R> executeForMutableResult;
+    private BiConsumer<D, R> toExecute;
     private int limitNumberIterations;
-    private final NodeAlgorithm<D> start;
-    private final R result;
 
-    public AlgorithmRecursiveMutableResultBuilder(NodeAlgorithm<D> start, R result) {
+    public AlgorithmRecursiveMutableResultBuilder(NodeAlgorithm<D> start, GenInstance<R> instanceGenerator) {
         this.start = start;
-        this.result = result;
+        this.instanceGenerator = instanceGenerator;
     }
 
     public AlgorithmRecursiveMutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithm<D>> finishIf) {
@@ -42,7 +43,7 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
     }
 
     public AlgorithmRecursiveMutableResultBuilder<D, R> toExecute(BiConsumer<D, R> toExecute) {
-        this.executeForMutableResult = toExecute;
+        this.toExecute = toExecute;
         return this;
     }
 
@@ -57,6 +58,6 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursive<>(config, new MutableResultRecursive<>(result, executeForMutableResult));
+        return new AlgorithmRecursive<>(config, ModifierResultRecursive.mutableResultRecursive(instanceGenerator, toExecute));
     }
 }

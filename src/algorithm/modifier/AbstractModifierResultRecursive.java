@@ -11,9 +11,9 @@ package algorithm.modifier;
  * @param <D>
  * @param <R>
  */
-public abstract class AbstractModifierResultRecursive<D, R> implements ModifierResultRecursive<D, R> {
+abstract class AbstractModifierResultRecursive<D, R> implements ModifierResultRecursive<D, R> {
     
-    protected long numberIteration;
+    private long numberIteration;
     
     public AbstractModifierResultRecursive() {
         this.numberIteration = 0;
@@ -28,5 +28,13 @@ public abstract class AbstractModifierResultRecursive<D, R> implements ModifierR
     public boolean hasBeenExceeded(int limit) {
         return numberIteration > limit;
     }
+    
+    @Override
+    public void reset() {
+        numberIteration = 0;
+    }
 
+    public long numberIteration() {
+        return numberIteration;
+    }
 }

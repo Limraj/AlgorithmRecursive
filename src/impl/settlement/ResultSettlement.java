@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.impl.settlement;
+package impl.settlement;
 
-import algorithm.impl.settlement.Settlement;
+import impl.settlement.Settlement;
 
 /**
  *
