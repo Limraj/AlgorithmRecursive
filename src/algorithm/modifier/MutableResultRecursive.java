@@ -10,15 +10,19 @@ import java.util.function.BiConsumer;
 /**
  *
  * @author Kamil-Tomasz
+ * @param <D>
+ * @param <R>
  */
-public class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {
+class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {
  
     private final BiConsumer<D, R> toExecute;
-    private final R result;
+    private final GenInstance<R> instanceGenerator;
+    private R result;
     
-    public MutableResultRecursive(R result, BiConsumer<D, R> toExecute) {
+    public MutableResultRecursive(GenInstance<R> instanceGenerator, BiConsumer<D, R> toExecute) {
         this.toExecute = toExecute;
-        this.result = result;
+        this.result = instanceGenerator.generate();
+        this.instanceGenerator = instanceGenerator;
     }
 
     @Override
@@ -28,6 +32,14 @@ public class MutableResultRecursive<D, R> extends AbstractModifierResultRecursiv
 
     @Override
     public ResultRecursive<R> snapshot() {
-        return new ResultRecursiveImpl<>(result, numberIteration);
+        return new ResultRecursiveImpl<>(result, numberIteration());
+    }
+
+    @Override
+    public void reset() {
+        R toDelete = result;
+        result = instanceGenerator.generate();
+        super.reset();
+        toDelete = null;
     }
 }

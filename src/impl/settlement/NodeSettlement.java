@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.impl.settlement;
+package impl.settlement;
 
 import algorithm.node.NodeAlgorithm;
 import java.util.List;

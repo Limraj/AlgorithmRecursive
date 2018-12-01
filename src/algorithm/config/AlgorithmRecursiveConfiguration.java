@@ -27,10 +27,6 @@ public class AlgorithmRecursiveConfiguration<D> {
         this.limitNumberIterations = limitNumberIterations;
     }
     
-    public static <D> AlgorithmRecursiveConfiguration<D> defaultConfig(NodeAlgorithm<D> start) {
-        return new AlgorithmRecursiveConfiguration.Builder<>(start).build();
-    }
-    
     public static class Builder<D> {
         
         private final NodeAlgorithm<D> start;
@@ -40,9 +36,6 @@ public class AlgorithmRecursiveConfiguration<D> {
 
         public Builder(NodeAlgorithm<D> start) {
             this.start = start;
-            this.executeIf = a -> true;
-            this.finishIf = a -> false;
-            this.limitNumberIterations = 100000000;
         }
 
         public Builder<D> executeIf(Predicate<NodeAlgorithm<D>> executeIf) {

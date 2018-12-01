@@ -7,6 +7,7 @@ package algorithm;
 
 import algorithm.config.AlgorithmRecursiveConfiguration;
 import algorithm.exception.IterationLimitHasBeenExceededException;
+import algorithm.modifier.GenInstance;
 import algorithm.modifier.ModifierResultRecursive;
 import algorithm.modifier.ResultRecursive;
 import java.util.ArrayList;
@@ -24,38 +25,38 @@ public final class AlgorithmRecursive<D, R> {
     private final AlgorithmRecursiveConfiguration<D> config;
     private final ModifierResultRecursive<D, R> modifier;
 
-    public AlgorithmRecursive(AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
+    AlgorithmRecursive(AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
         this.config = config;
         this.modifier = modifier;
-        run();
     }
 
     public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResultBuilder(NodeAlgorithm<D> start, R result) {
         return new AlgorithmRecursiveImmutableResultBuilder<>(start, result);
     }
     
-    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResultBuilder(NodeAlgorithm<D> start, R result) {
-        return new AlgorithmRecursiveMutableResultBuilder<>(start, result);
+    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResultBuilder(NodeAlgorithm<D> start, GenInstance<R> instanceGenerator) {
+        return new AlgorithmRecursiveMutableResultBuilder<>(start, instanceGenerator);
     }
     
     public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResultBuilder(NodeAlgorithm<D> start) {
-        return new AlgorithmRecursiveMutableResultBuilder<>(start, new ArrayList<>());
+        return new AlgorithmRecursiveMutableResultBuilder<>(start, () -> new ArrayList<>());
     }
     
     public ResultRecursive<R> result() {
         return modifier.snapshot();
     }
     
-    private void run() {
+    public void start() {
+        modifier.reset();
         if(config.isToExecute(config.getStart()))
             modifier.execute(config.getStart().data());
         if(isEnd(config.getStart()))
             return;
-        execute(config.getStart());
+        step(config.getStart());
     }
     
     private boolean isEnd(NodeAlgorithm<D> node) {
-        return isLeaf(node) || (config.isFinish(node));
+        return isLeaf(node) || config.isFinish(node);
     }
     
     private static <T> boolean isLeaf(NodeAlgorithm<T> node) {
@@ -63,7 +64,7 @@ public final class AlgorithmRecursive<D, R> {
         return nodes == null || nodes.isEmpty();
     }
     
-    private void execute(NodeAlgorithm<D> start) {
+    private void step(NodeAlgorithm<D> start) {
         modifier.incrementIteration();
         ifHasBeenExceededThenThrowException();
         start.nodes().stream().map(node -> {
@@ -71,7 +72,7 @@ public final class AlgorithmRecursive<D, R> {
                 modifier.execute(node.data());
             return node;
         }).filter(node -> !isEnd(node)).forEachOrdered(node -> {
-            execute(node);
+            step(node);
         }); 
     }
 

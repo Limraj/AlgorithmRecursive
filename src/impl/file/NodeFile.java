@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.impl.file;
+package impl.file;
 
 import java.io.File;
 import java.util.Collections;

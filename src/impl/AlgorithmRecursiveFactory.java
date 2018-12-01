@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package impl;
 
-import algorithm.impl.file.NodeFile;
-import algorithm.impl.number.NodeInteger;
-import ext.Extension;
+import algorithm.AlgorithmRecursive;
+import impl.file.NodeFile;
+import impl.number.NodeInteger;
+import impl.file.ext.Extension;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
-import util.FileUtil;
+import impl.file.util.FileUtil;
 
 /**
  *

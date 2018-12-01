@@ -8,23 +8,35 @@ package algorithm.modifier;
 import java.util.function.BiFunction;
 
 
-public class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {
+class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {
 
     private final BiFunction<D, R, R> toExecute;
+    private final R reset;
     private R result;
     
     public ImmutableResultRecursive(R result, BiFunction<D, R, R> toExecute) {
         this.toExecute = toExecute;
         this.result = result;
+        this.reset = result;
     }
 
     @Override
     public void execute(D value) {
+        R toDelete = result;
         result = toExecute.apply(value, result);
+        toDelete = null;
     }
 
     @Override
     public ResultRecursive<R> snapshot() {
-        return new ResultRecursiveImpl<>(result, numberIteration);
+        return new ResultRecursiveImpl<>(result, numberIteration());
+    }
+
+    @Override
+    public void reset() {
+        R toDelete = result;
+        this.result = this.reset;
+        super.reset();
+        toDelete = null;
     }
 }
