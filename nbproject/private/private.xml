@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/ImmutableResultRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/AbstractModifierResultRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/ModifierResultRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/MutableExecutableImpl.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/config/AlgorithmRecursiveConfiguration.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/exception/IterationLimitHasBeenExceededException.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/node/NodeAlgorithm.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/file/NodeFile.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveImmutableResultBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveMutableResultBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/MutableExecutable.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/MutableResultBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/ResultRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveBuildable.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/start/Start.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/ext/Extension.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/util/FileUtil.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/settlement/NodeSettlement.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/MutableResultRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/number/NodeInteger.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveFactory.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/number/ResultBigDecimal.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/ImmutableExecutable.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/ImmutableResultBuilder.java</file>
+        </group>
+    </open-files>
+</project-private>
