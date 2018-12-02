@@ -9,8 +9,6 @@ import algorithm.modifier.ResultRecursive;
 import impl.settlement_to_test.NodeSettlement;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -28,7 +26,7 @@ public class AlgorithmRecursiveAggregateResultFirstTest {
     @BeforeClass
     public static void initTest() {
         found = SettlementsAggregator.get("123").iterator().next();
-        aggregate = AlgorithmRecursive
+        aggregate = AlgorithmRecursiveFactory
                 .aggregateResult(new NodeSettlement(found))
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> a.data().getSearch().equals("yes"))

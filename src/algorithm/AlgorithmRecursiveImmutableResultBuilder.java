@@ -57,6 +57,6 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursive<>(start, config, ModifierResultRecursive.immutableResultRecursive(toExecute, result));
+        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.immutableResultRecursive(toExecute, result));
     }
 }

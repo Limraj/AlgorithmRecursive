@@ -7,11 +7,8 @@ package algorithm;
 
 import algorithm.modifier.ResultRecursive;
 import impl.settlement_to_test.NodeSettlement;
-import impl.settlement_to_test.ResultSettlement;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +27,7 @@ public class AlgorithmRecursiveImmutableResultFirstTest {
     public static void initTest() {
         initSettlement = null;
         notFound = SettlementsAggregator.get("456").iterator().next();
-        immutable = AlgorithmRecursive.immutableResult(new NodeSettlement(notFound), initSettlement)
+        immutable = AlgorithmRecursiveFactory.immutableResult(new NodeSettlement(notFound), initSettlement)
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> a.data().getSearch().equals("yes"))
                 .toExecute((a,b) -> a)
