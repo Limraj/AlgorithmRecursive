@@ -46,7 +46,7 @@ public class AlgorithmRecursiveMutableResultLastTest {
     }
     
     @Test
-    public void testResultFoundFirstInBranch() {
+    public void testResultFoundLastInBranch() {
         //given:
         Settlement yes = SettlementsAggregator.get("118").iterator().next();
         ResultSettlement end = new ResultSettlement();

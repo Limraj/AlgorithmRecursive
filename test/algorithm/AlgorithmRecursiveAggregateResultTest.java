@@ -33,6 +33,7 @@ public class AlgorithmRecursiveAggregateResultTest {
         aggregate = AlgorithmRecursive
                 .aggregateResult(new NodeSettlement(notFound))
                 .executeIf(a -> a.data().getSearch().equals("yes"))
+                .finishIf(a -> false)
                 .toExecute((a,b) -> b.add(a))
                 .build();
     }
