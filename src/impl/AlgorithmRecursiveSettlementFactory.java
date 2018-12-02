@@ -18,7 +18,7 @@ import java.util.function.Predicate;
  *
  * @author Kamil-Tomasz
  */
-public class AlgorithmRecursiveForSettlementFactory {
+public class AlgorithmRecursiveSettlementFactory {
         
     public static AlgorithmRecursive<Settlement, ResultSettlement> searchSettlementFirst(Settlement settlement, Predicate<NodeAlgorithm<Settlement>> searchCondition) {
         return AlgorithmRecursiveFactory
