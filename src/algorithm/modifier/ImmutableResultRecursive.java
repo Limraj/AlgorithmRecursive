@@ -22,9 +22,7 @@ class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, 
 
     @Override
     public void execute(D value) {
-        R toDelete = result;
         result = toExecute.apply(value, result);
-        toDelete = null;
     }
 
     @Override
@@ -34,9 +32,7 @@ class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, 
 
     @Override
     public void reset() {
-        R toDelete = result;
         this.result = this.reset;
         super.reset();
-        toDelete = null;
     }
 }
