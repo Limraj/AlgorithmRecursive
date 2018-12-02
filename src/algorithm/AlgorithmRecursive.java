@@ -6,7 +6,7 @@
 package algorithm;
 
 import algorithm.modifier.ResultRecursive;
-import algorithm.node.NodeAlgorithm;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
@@ -16,6 +16,6 @@ import algorithm.node.NodeAlgorithm;
  */
 public interface AlgorithmRecursive<D, R> {
     void run();
-    void changeStartAndRun(NodeAlgorithm<D> start);
+    void changeStartAndRun(NodeAlgorithmRecursive<D> start);
     ResultRecursive<R> result();
 }

@@ -5,8 +5,8 @@
  */
 package algorithm.modifier;
 
-import algorithm.node.NodeAlgorithm;
 import java.util.function.BiFunction;
+import algorithm.node.NodeAlgorithmRecursive;
 
 
 class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {

@@ -7,6 +7,7 @@ package impl.settlement_to_test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,5 +79,9 @@ public class SettlementsAggregator {
     
     public static List<Settlement> getPreservedOrder(String... numerMain) {
         return Arrays.asList(numerMain).stream().flatMap(a -> get(a).stream()).collect(Collectors.toList());
+    }
+    
+    public static Collection<Settlement> getAll() {
+        return settlements.values();
     }
 }

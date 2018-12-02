@@ -6,7 +6,7 @@
 package impl;
 
 import algorithm.AlgorithmRecursive;
-import algorithm.AlgorithmRecursiveFactory;
+import algorithm.AlgorithmRecursiveBuilderFactory;
 import impl.file.NodeFile;
 import impl.file.ext.Extension;
 import impl.file.util.FileUtil;
@@ -21,7 +21,7 @@ import java.util.Set;
 public class AlgorithmRecursiveFileFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFiles(File dir) {
-        return AlgorithmRecursiveFactory.aggregateResult(new NodeFile(dir))
+        return AlgorithmRecursiveBuilderFactory.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()))
                         .toExecute((file,result) -> result.add(file))
@@ -29,7 +29,7 @@ public class AlgorithmRecursiveFileFactory {
     }
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByName(File dir, String name) {
-        return AlgorithmRecursiveFactory.aggregateResult(new NodeFile(dir))
+        return AlgorithmRecursiveBuilderFactory.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && node.data().getName().contains(name))
@@ -38,7 +38,7 @@ public class AlgorithmRecursiveFileFactory {
     }
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByExtension(File dir, Extension extension) {
-        return AlgorithmRecursiveFactory.aggregateResult(new NodeFile(dir))
+        return AlgorithmRecursiveBuilderFactory.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && Extension.ext(node.data()) == extension)
@@ -47,7 +47,7 @@ public class AlgorithmRecursiveFileFactory {
     }
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByExtensions(File dir, Set<Extension> extension) {
-        return AlgorithmRecursiveFactory.aggregateResult(new NodeFile(dir))
+        return AlgorithmRecursiveBuilderFactory.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && extension.contains(Extension.ext(node.data())))

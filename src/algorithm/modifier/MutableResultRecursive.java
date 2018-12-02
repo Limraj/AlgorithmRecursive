@@ -5,8 +5,8 @@
  */
 package algorithm.modifier;
 
-import algorithm.node.NodeAlgorithm;
 import java.util.function.BiConsumer;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *

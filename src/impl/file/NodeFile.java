@@ -10,13 +10,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import algorithm.node.NodeAlgorithm;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
  * @author kamil.jarmusik
  */
-public class NodeFile implements NodeAlgorithm<File> {
+public class NodeFile implements NodeAlgorithmRecursive<File> {
     
     private final File file;
 
@@ -25,7 +25,7 @@ public class NodeFile implements NodeAlgorithm<File> {
     }
 
     @Override
-    public List<NodeAlgorithm<File>> nodes() {
+    public List<NodeAlgorithmRecursive<File>> nodes() {
         File[] files = file.listFiles();
         return (files == null || files.length == 0) ? Collections.emptyList() :
                 Stream.of(files).map(f -> new NodeFile(f))
@@ -35,5 +35,10 @@ public class NodeFile implements NodeAlgorithm<File> {
     @Override
     public File data() {
         return file;
+    }
+
+    @Override
+    public String toString() {
+        return "NodeFile{" + "file=" + file + '}';
     }
 }

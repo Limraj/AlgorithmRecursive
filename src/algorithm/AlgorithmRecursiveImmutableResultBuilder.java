@@ -9,7 +9,7 @@ import algorithm.config.AlgorithmRecursiveConfiguration;
 import algorithm.modifier.ModifierResultRecursive;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
-import algorithm.node.NodeAlgorithm;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
@@ -19,24 +19,24 @@ import algorithm.node.NodeAlgorithm;
  */
 public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
     
-    private Predicate<NodeAlgorithm<D>> executeIf;
-    private Predicate<NodeAlgorithm<D>> finishIf;
+    private Predicate<NodeAlgorithmRecursive<D>> executeIf;
+    private Predicate<NodeAlgorithmRecursive<D>> finishIf;
     private BiFunction<D, R, R> toExecute;
     private int limitNumberIterations;
-    private final NodeAlgorithm<D> start;
+    private final NodeAlgorithmRecursive<D> start;
     private final R result;
 
-    public AlgorithmRecursiveImmutableResultBuilder(NodeAlgorithm<D> start, R result) {
+    public AlgorithmRecursiveImmutableResultBuilder(NodeAlgorithmRecursive<D> start, R result) {
         this.start = start;
         this.result = result;
     }
 
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithm<D>> finishIf) {
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithmRecursive<D>> finishIf) {
         this.finishIf = finishIf;
         return this;
     }
 
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<NodeAlgorithm<D>> executeIf) {
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<NodeAlgorithmRecursive<D>> executeIf) {
         this.executeIf = executeIf;
         return this;
     }
@@ -57,6 +57,6 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.immutableResultRecursive(toExecute, result));
+        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.immutableResult(toExecute, result));
     }
 }
