@@ -14,7 +14,7 @@ import algorithm.node.NodeAlgorithmRecursive;
  *
  * @author Kamil-Tomasz
  */
-public class AlgorithmRecursiveBuilderFactory {
+public class AlgorithmRecursiveBuilder {
     
     public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(NodeAlgorithmRecursive<D> start, R result) {
         return new AlgorithmRecursiveImmutableResultBuilder<>(start, result);
