@@ -6,7 +6,7 @@
 package impl;
 
 import algorithm.AlgorithmRecursive;
-import algorithm.AlgorithmRecursiveBuilderFactory;
+import algorithm.AlgorithmRecursiveBuilder;
 import impl.file.NodeFile;
 import impl.number.NodeInteger;
 import impl.file.ext.Extension;
@@ -23,7 +23,7 @@ import impl.file.util.FileUtil;
 public final class AlgorithmRecursiveNumericFactory {
 
     public static AlgorithmRecursive<Integer, BigDecimal> factorial(int arg) {
-        return AlgorithmRecursiveBuilderFactory.immutableResult(new NodeInteger(arg), BigDecimal.ONE)
+        return AlgorithmRecursiveBuilder.immutableResult(new NodeInteger(arg), BigDecimal.ONE)
                         .finishIf(node -> node.data() < 2)
                         .executeIf(node -> true)
                         .limitNumberIterations(10000)

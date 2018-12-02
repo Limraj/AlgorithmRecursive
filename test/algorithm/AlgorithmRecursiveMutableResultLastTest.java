@@ -26,7 +26,7 @@ public class AlgorithmRecursiveMutableResultLastTest {
     @BeforeClass
     public static void initTest() {
         notFound = SettlementsAggregator.get("456").iterator().next();
-        mutable = AlgorithmRecursiveBuilderFactory
+        mutable = AlgorithmRecursiveBuilder
                 .mutableResult(new NodeSettlement(notFound), () -> new ResultSettlement())
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> false)

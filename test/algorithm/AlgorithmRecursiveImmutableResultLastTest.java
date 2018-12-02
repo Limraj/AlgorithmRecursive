@@ -28,7 +28,7 @@ public class AlgorithmRecursiveImmutableResultLastTest {
     public static void initTest() {
         initSettlement = null;
         notFound = SettlementsAggregator.get("456").iterator().next();
-        immutable = AlgorithmRecursiveBuilderFactory.immutableResult(new NodeSettlement(notFound), initSettlement)
+        immutable = AlgorithmRecursiveBuilder.immutableResult(new NodeSettlement(notFound), initSettlement)
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> false)
                 .toExecute((a,b) -> a)
