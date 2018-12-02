@@ -6,21 +6,16 @@
 package start;
 
 import algorithm.AlgorithmRecursive;
-import impl.AlgorithmRecursiveFactory;
-import impl.file.NodeFile;
-import impl.number.NodeInteger;
-import impl.number.ResultBigDecimal;
-import impl.settlement.Settlement;
-import impl.settlement.SettlementsAggregator;
-import impl.settlement.NodeSettlement;
-import impl.settlement.ResultSettlement;
-import java.util.List;
 import algorithm.node.NodeAlgorithm;
+import impl.AlgorithmRecursiveFactory;
+import impl.settlement_to_test.Settlement;
+import impl.settlement_to_test.SettlementsAggregator;
+import impl.settlement_to_test.ResultSettlement;
+import java.util.List;
 import impl.AlgorithmRecursiveForSettlementFactory;
 import impl.file.ext.Extension;
 import java.io.File;
 import java.math.BigDecimal;
-import impl.file.util.FileUtil;
 
 /**
  *
@@ -33,33 +28,32 @@ public class Start {
      */
     public static void main(String[] args) {
 
-        AlgorithmRecursive<Integer, BigDecimal> factor = 
-                AlgorithmRecursiveFactory.factorial(750);
-        factor.start();
+        AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveFactory.factorial(700);
+        factor.run();
         System.out.println("result:" + factor.result().getValue());
-        factor.start();
+        factor.run();
         System.out.println("result:" + factor.result().getValue());
         
         File dir = new File("C://dev");
-        AlgorithmRecursive<File, List<File>> filesByExtension = 
-                AlgorithmRecursiveFactory.aggregateFilesByExtension(dir, Extension.JSON);
-        filesByExtension.start();
+        AlgorithmRecursive<File, List<File>> filesByExtension = AlgorithmRecursiveFactory.aggregateFilesByExtension(dir, Extension.DOCX);
+        filesByExtension.run();
         System.out.println("result:" + filesByExtension.result().getValue());
         
-        AlgorithmRecursive<File, List<File>> filesByName = 
-                AlgorithmRecursiveFactory.aggregateFilesByName(dir, "nameFile");
-        filesByName.start();
+        AlgorithmRecursive<File, List<File>> filesByName = AlgorithmRecursiveFactory.aggregateFilesByName(dir, "nameFile");
+        filesByName.run();
         System.out.println("result:" + filesByName.result().getValue());
         
-        Settlement settlement = SettlementsAggregator.get("123").iterator().next();
-        AlgorithmRecursive<Settlement, ResultSettlement> search = AlgorithmRecursiveForSettlementFactory
-                .searchSettlementLast(settlement, a -> a.data().getSearch().equals("yes"));
-        search.start();
+        Settlement settlement = SettlementsAggregator.get("456").iterator().next();
+        AlgorithmRecursive<Settlement, ResultSettlement> search = AlgorithmRecursiveForSettlementFactory.searchSettlementFirst(settlement, a -> a.data().getSearch().equals("yes"));
+        search.run();
         System.out.println("result:" + search.result().getValue());
         
         AlgorithmRecursive<Settlement, List<Settlement>> search2 = AlgorithmRecursiveForSettlementFactory.aggregateSettlements(settlement, a -> a.data().getSearch().equals("yes"));
-        search2.start();
+        search2.run();
         System.out.println("result:" + search2.result().getValue());
+
+        
+
     }
     
 }

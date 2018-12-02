@@ -13,4 +13,8 @@ package algorithm.modifier;
 public interface ResultRecursive<T> {
     T getValue();
     long getNumberIteration();
+
+    static <T> ResultRecursive<T> newInstance(T value, long numberIteration) {
+        return new ResultRecursiveImpl<>(value, numberIteration);
+    }
 }

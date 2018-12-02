@@ -5,6 +5,7 @@
  */
 package algorithm.modifier;
 
+import algorithm.node.NodeAlgorithm;
 import java.util.function.BiConsumer;
 
 /**
@@ -19,10 +20,10 @@ class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R>
     private final GenInstance<R> instanceGenerator;
     private R result;
     
-    public MutableResultRecursive(GenInstance<R> instanceGenerator, BiConsumer<D, R> toExecute) {
+    public MutableResultRecursive(BiConsumer<D, R> toExecute, GenInstance<R> instanceGenerator) {
         this.toExecute = toExecute;
-        this.result = instanceGenerator.generate();
         this.instanceGenerator = instanceGenerator;
+        this.result = instanceGenerator.generate();
     }
 
     @Override
@@ -32,7 +33,7 @@ class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R>
 
     @Override
     public ResultRecursive<R> snapshot() {
-        return new ResultRecursiveImpl<>(result, numberIteration());
+        return ResultRecursive.newInstance(result, numberIteration());
     }
 
     @Override

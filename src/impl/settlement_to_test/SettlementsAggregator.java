@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package impl.settlement;
+package impl.settlement_to_test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
  */
 public class SettlementsAggregator {
     
-    private static final Map<Long, Settlement> rozliczenia = new HashMap<>();
+    private static final Map<Long, Settlement> settlements = new HashMap<>();
     
     static {
         put(new Settlement("123", "234", "456", "no"));
@@ -47,18 +49,34 @@ public class SettlementsAggregator {
     }
 
     public static Settlement put(Settlement value) {
-        return rozliczenia.put(value.getId(), value);
+        return settlements.put(value.getId(), value);
     }
     
     public static Set<Settlement> get(String nr) {
-        return rozliczenia.entrySet().stream()
-                .filter(a -> a.getValue().getNr().equalsIgnoreCase(nr))
+        return settlements.entrySet().stream()
+                .filter(a -> a.getValue().getNumberMain().equalsIgnoreCase(nr))
                 .map(a -> a.getValue())
                 .collect(Collectors.toSet());
     }
     
     public static Settlement get(long id) {
-        return rozliczenia.get(id);
+        return settlements.get(id);
     }
     
+    public static List<Settlement> search(String search) {
+        return settlements.values().stream()
+                .filter(a -> a.getSearch().equalsIgnoreCase(search))
+                .collect(Collectors.toList());
+    }
+    
+    public static List<Settlement> search(String search, String... numerMain) {
+        return settlements.values().stream()
+                .filter(a -> a.getSearch().equalsIgnoreCase(search) 
+                && Arrays.asList(numerMain).contains(a.getNumberMain()))
+                .collect(Collectors.toList());
+    }
+    
+    public static List<Settlement> getPreservedOrder(String... numerMain) {
+        return Arrays.asList(numerMain).stream().flatMap(a -> get(a).stream()).collect(Collectors.toList());
+    }
 }

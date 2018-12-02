@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package impl.settlement;
+package impl.settlement_to_test;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
@@ -13,17 +14,20 @@ import java.util.Objects;
  */
 public class Settlement {
     
-    private static long genId = 0;
-    private final long id;
-    private final String nr;
-    private final String nr1;
-    private final String nr2;
-    private final String search;
+    private static final AtomicInteger genId = new AtomicInteger();
+    private final int id;
+    private String numberMain;
+    private String nr1;
+    private String nr2;
+    private String search;
+    
+    public Settlement() {
+        this.id = genId.incrementAndGet();
+    }
 
-    public Settlement(String nr, String nr1, String nr2, String search) {
-        genId++;
-        this.id = genId;
-        this.nr = nr;
+    public Settlement(String numberMain, String nr1, String nr2, String search) {
+        this.id = genId.incrementAndGet();
+        this.numberMain = numberMain;
         this.nr1 = nr1;
         this.nr2 = nr2;
         this.search = search;
@@ -33,8 +37,8 @@ public class Settlement {
         return id;
     }
 
-    public String getNr() {
-        return nr;
+    public String getNumberMain() {
+        return numberMain;
     }
 
     public String getNr1() {
@@ -52,7 +56,7 @@ public class Settlement {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.nr);
+        hash = 31 * hash + Objects.hashCode(this.numberMain);
         hash = 31 * hash + Objects.hashCode(this.nr1);
         hash = 31 * hash + Objects.hashCode(this.nr2);
         hash = 31 * hash + Objects.hashCode(this.search);
@@ -71,7 +75,7 @@ public class Settlement {
             return false;
         }
         final Settlement other = (Settlement) obj;
-        if (!Objects.equals(this.nr, other.nr)) {
+        if (!Objects.equals(this.numberMain, other.numberMain)) {
             return false;
         }
         if (!Objects.equals(this.nr1, other.nr1)) {
@@ -80,16 +84,11 @@ public class Settlement {
         if (!Objects.equals(this.nr2, other.nr2)) {
             return false;
         }
-        if (!Objects.equals(this.search, other.search)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.search, other.search);
     }
-
-    
 
     @Override
     public String toString() {
-        return "Rozliczenie{" + "id=" + id + ", nr=" + nr + ", nr1=" + nr1 + ", nr2=" + nr2 + ", search=" + search + '}';
+        return "Settlement{" + "id=" + id + ", numberMain=" + numberMain + ", nr1=" + nr1 + ", nr2=" + nr2 + ", search=" + search + '}';
     }
 }

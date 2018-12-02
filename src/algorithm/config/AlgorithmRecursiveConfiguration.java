@@ -14,28 +14,24 @@ import algorithm.node.NodeAlgorithm;
  * @param <D>
  */
 public class AlgorithmRecursiveConfiguration<D> {
-    
-    private final NodeAlgorithm<D> start;
+
     private final Predicate<NodeAlgorithm<D>> executeIf;
     private final Predicate<NodeAlgorithm<D>> finishIf;
     private final int limitNumberIterations;
 
-    private AlgorithmRecursiveConfiguration(NodeAlgorithm<D> start, Predicate<NodeAlgorithm<D>> executeIf, Predicate<NodeAlgorithm<D>> finishIf, int limitNumberIterations) {
-        this.start = start;
+    private AlgorithmRecursiveConfiguration(Predicate<NodeAlgorithm<D>> executeIf, Predicate<NodeAlgorithm<D>> finishIf, int limitNumberIterations) {
         this.executeIf = executeIf;
         this.finishIf = finishIf;
         this.limitNumberIterations = limitNumberIterations;
     }
     
     public static class Builder<D> {
-        
-        private final NodeAlgorithm<D> start;
+
         private Predicate<NodeAlgorithm<D>> executeIf;
         private Predicate<NodeAlgorithm<D>> finishIf;
         private int limitNumberIterations;
 
-        public Builder(NodeAlgorithm<D> start) {
-            this.start = start;
+        public Builder() {
         }
 
         public Builder<D> executeIf(Predicate<NodeAlgorithm<D>> executeIf) {
@@ -54,7 +50,7 @@ public class AlgorithmRecursiveConfiguration<D> {
         }
         
         public AlgorithmRecursiveConfiguration<D> build() {
-            return new AlgorithmRecursiveConfiguration<>(start, executeIf, finishIf, limitNumberIterations);
+            return new AlgorithmRecursiveConfiguration<>(executeIf, finishIf, limitNumberIterations);
         }
     }
 
@@ -64,10 +60,6 @@ public class AlgorithmRecursiveConfiguration<D> {
 
     public boolean isFinish(NodeAlgorithm<D> t) {
         return finishIf.test(t);
-    }
-
-    public NodeAlgorithm<D> getStart() {
-        return start;
     }
 
     public int getLimitNumberIterations() {
