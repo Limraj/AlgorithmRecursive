@@ -37,9 +37,7 @@ class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R>
 
     @Override
     public void reset() {
-        R toDelete = result;
         result = instanceGenerator.generate();
         super.reset();
-        toDelete = null;
     }
 }

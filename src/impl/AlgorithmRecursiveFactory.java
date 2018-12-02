@@ -22,7 +22,7 @@ import impl.file.util.FileUtil;
 public final class AlgorithmRecursiveFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFiles(File dir) {
-        return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+        return AlgorithmRecursive.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()))
                         .toExecute((file,result) -> result.add(file))
@@ -30,7 +30,7 @@ public final class AlgorithmRecursiveFactory {
     }
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByName(File dir, String name) {
-        return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+        return AlgorithmRecursive.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && node.data().getName().contains(name))
@@ -39,7 +39,7 @@ public final class AlgorithmRecursiveFactory {
     }
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByExtension(File dir, Extension extension) {
-        return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+        return AlgorithmRecursive.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && Extension.ext(node.data()) == extension)
@@ -48,7 +48,7 @@ public final class AlgorithmRecursiveFactory {
     }
     
     public static AlgorithmRecursive<File, List<File>> aggregateFilesByExtensions(File dir, Set<Extension> extension) {
-        return AlgorithmRecursive.aggregateResultBuilder(new NodeFile(dir))
+        return AlgorithmRecursive.aggregateResult(new NodeFile(dir))
                         .finishIf(node -> false)
                         .executeIf(node -> !FileUtil.isDirectory(node.data()) 
                                 && extension.contains(Extension.ext(node.data())))
@@ -57,7 +57,7 @@ public final class AlgorithmRecursiveFactory {
     }
     
     public static AlgorithmRecursive<Integer, BigDecimal> factorial(int arg) {
-        return AlgorithmRecursive.immutableResultBuilder(new NodeInteger(arg), BigDecimal.ONE)
+        return AlgorithmRecursive.immutableResult(new NodeInteger(arg), BigDecimal.ONE)
                         .finishIf(node -> node.data() < 2)
                         .executeIf(node -> true)
                         .limitNumberIterations(949)

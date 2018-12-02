@@ -30,15 +30,15 @@ public final class AlgorithmRecursive<D, R> {
         this.modifier = modifier;
     }
 
-    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResultBuilder(NodeAlgorithm<D> start, R result) {
+    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(NodeAlgorithm<D> start, R result) {
         return new AlgorithmRecursiveImmutableResultBuilder<>(start, result);
     }
     
-    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResultBuilder(NodeAlgorithm<D> start, GenInstance<R> instanceGenerator) {
+    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(NodeAlgorithm<D> start, GenInstance<R> instanceGenerator) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, instanceGenerator);
     }
     
-    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResultBuilder(NodeAlgorithm<D> start) {
+    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(NodeAlgorithm<D> start) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, () -> new ArrayList<>());
     }
     
