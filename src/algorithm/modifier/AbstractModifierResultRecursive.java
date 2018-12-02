@@ -5,7 +5,7 @@
  */
 package algorithm.modifier;
 
-import algorithm.node.NodeAlgorithm;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *

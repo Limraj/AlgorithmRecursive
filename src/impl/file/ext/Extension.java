@@ -20,7 +20,7 @@ public enum Extension {
     
     PDF("pdf"),DOC("doc"),DOCX("docx"),SQL("sql"),XSD("xsd"),WSDL("wsdl"),JAVA("java"),
     TXT("txt"),CSV("csv"),XLS("xls"),XLSX("xlsx"),XML("xml"),JSON("json"),HTML("html"),
-    XHTML("xhtml"),UNKNOWN("");
+    XHTML("xhtml"),JSP("jsp"),UNKNOWN("");
     
     private final String extensionName;
 

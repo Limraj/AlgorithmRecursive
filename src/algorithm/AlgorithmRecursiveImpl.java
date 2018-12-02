@@ -7,12 +7,13 @@ package algorithm;
 
 import algorithm.config.AlgorithmRecursiveConfiguration;
 import algorithm.exception.IterationLimitHasBeenExceededException;
-import algorithm.modifier.GenInstance;
 import algorithm.modifier.ModifierResultRecursive;
 import algorithm.modifier.ResultRecursive;
-import java.util.ArrayList;
 import java.util.List;
-import algorithm.node.NodeAlgorithm;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import algorithm.node.NodeAlgorithmRecursive;
+import java.util.Iterator;
 
 /**
  *
@@ -24,16 +25,16 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
     
     private final AlgorithmRecursiveConfiguration<D> config;
     private final ModifierResultRecursive<D, R> modifier;
-    private NodeAlgorithm<D> start;
+    private NodeAlgorithmRecursive<D> start;
 
-    AlgorithmRecursiveImpl(NodeAlgorithm<D> start, AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
+    AlgorithmRecursiveImpl(NodeAlgorithmRecursive<D> start, AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
         this.config = config;
         this.modifier = modifier;
         this.start = start;
     }
     
     @Override
-    public void changeStartAndRun(NodeAlgorithm<D> start) {
+    public void changeStartAndRun(NodeAlgorithmRecursive<D> start) {
         this.start = start;
         run();
     }
@@ -54,25 +55,24 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
         step(start);
     }
 
-    private boolean isEnd(NodeAlgorithm<D> node) {
+    private boolean isEnd(NodeAlgorithmRecursive<D> node) {
         return isLeaf(node) || config.isFinish(node);
     }
     
-    private static <T> boolean isLeaf(NodeAlgorithm<T> node) {
-        List<NodeAlgorithm<T>> nodes = node.nodes();
+    private static <T> boolean isLeaf(NodeAlgorithmRecursive<T> node) {
+        List<NodeAlgorithmRecursive<T>> nodes = node.nodes();
         return nodes == null || nodes.isEmpty();
     }
     
-    private void step(NodeAlgorithm<D> start) {
+    private void step(NodeAlgorithmRecursive<D> start) {
         modifier.incrementIteration();
         ifHasBeenExceededThenThrowException();
-        start.nodes().stream().map(node -> {
+        for (NodeAlgorithmRecursive<D> node : start.nodes()) {
             if(config.isToExecute(node))
-                modifier.execute(node.data());
-            return node;
-        }).filter(node -> !isEnd(node)).forEachOrdered(node -> {
-            step(node);
-        }); 
+                modifier.execute(node.data());  
+            if(!isEnd(node))
+                step(node);
+        }
     }
 
     private void ifHasBeenExceededThenThrowException() {

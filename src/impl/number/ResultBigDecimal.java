@@ -30,6 +30,4 @@ public class ResultBigDecimal {
     public String toString() {
         return "ResultBigDecimal{" + "result=" + result + '}';
     }
-    
-    
 }

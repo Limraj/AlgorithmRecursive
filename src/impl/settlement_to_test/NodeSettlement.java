@@ -5,16 +5,16 @@
  */
 package impl.settlement_to_test;
 
-import algorithm.node.NodeAlgorithm;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class NodeSettlement implements NodeAlgorithm<Settlement> {
+public class NodeSettlement implements NodeAlgorithmRecursive<Settlement> {
     
     private final Settlement settlement;
 
@@ -23,7 +23,7 @@ public class NodeSettlement implements NodeAlgorithm<Settlement> {
     }
 
     @Override
-    public List<NodeAlgorithm<Settlement>> nodes() {
+    public List<NodeAlgorithmRecursive<Settlement>> nodes() {
         Set<Settlement> start = SettlementsAggregator.get(settlement.getNumberMain());
         Set<Settlement> nodesNr1 = start.stream().flatMap(a -> SettlementsAggregator.get(a.getNr1()).stream()).collect(Collectors.toSet());
         Set<Settlement> nodesNr2 = start.stream().flatMap(a -> SettlementsAggregator.get(a.getNr2()).stream()).collect(Collectors.toSet());
@@ -35,5 +35,9 @@ public class NodeSettlement implements NodeAlgorithm<Settlement> {
     public Settlement data() {
         return settlement;
     }
-    
+
+    @Override
+    public String toString() {
+        return "NodeSettlement{" + "settlement=" + settlement + '}';
+    }
 }

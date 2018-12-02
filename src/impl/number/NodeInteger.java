@@ -5,24 +5,24 @@
  */
 package impl.number;
 
-import algorithm.node.NodeAlgorithm;
 import java.util.ArrayList;
 import java.util.List;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class NodeInteger implements NodeAlgorithm<Integer> {
-    private final int data;
+public class NodeInteger implements NodeAlgorithmRecursive<Integer> {
+    private final Integer data;
 
-    public NodeInteger(int data) {
+    public NodeInteger(Integer data) {
         this.data = data;
     }
 
     @Override
-    public List<NodeAlgorithm<Integer>> nodes() {
-        List<NodeAlgorithm<Integer>> nodes = new ArrayList<>();
+    public List<NodeAlgorithmRecursive<Integer>> nodes() {
+        List<NodeAlgorithmRecursive<Integer>> nodes = new ArrayList<>();
         nodes.add(new NodeInteger(data - 1));
         return nodes;
     }
@@ -36,6 +36,4 @@ public class NodeInteger implements NodeAlgorithm<Integer> {
     public String toString() {
         return "NodeInteger{" + "data=" + data + '}';
     }
-    
-    
 }

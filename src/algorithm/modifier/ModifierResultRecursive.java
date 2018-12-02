@@ -5,9 +5,9 @@
  */
 package algorithm.modifier;
 
-import algorithm.node.NodeAlgorithm;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
@@ -22,11 +22,11 @@ public interface ModifierResultRecursive<D, R> {
     boolean hasBeenExceeded(int limit);
     ResultRecursive<R> snapshot();
     
-    static <D, R> ModifierResultRecursive<D, R> mutableResultRecursive(BiConsumer<D, R> toExecute, GenInstance<R> instanceGenerator) {
+    static <D, R> ModifierResultRecursive<D, R> mutableResult(BiConsumer<D, R> toExecute, GenInstance<R> instanceGenerator) {
         return new MutableResultRecursive<>(toExecute, instanceGenerator);
     }
     
-    static <D, R> ModifierResultRecursive<D, R> immutableResultRecursive(BiFunction<D, R, R> toExecute, R result) {
+    static <D, R> ModifierResultRecursive<D, R> immutableResult(BiFunction<D, R, R> toExecute, R result) {
         return new ImmutableResultRecursive<>(toExecute, result);
     }
 }

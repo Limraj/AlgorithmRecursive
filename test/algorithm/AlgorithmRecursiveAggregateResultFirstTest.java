@@ -26,7 +26,7 @@ public class AlgorithmRecursiveAggregateResultFirstTest {
     @BeforeClass
     public static void initTest() {
         found = SettlementsAggregator.get("123").iterator().next();
-        aggregate = AlgorithmRecursiveFactory
+        aggregate = AlgorithmRecursiveBuilderFactory
                 .aggregateResult(new NodeSettlement(found))
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> a.data().getSearch().equals("yes"))

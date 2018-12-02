@@ -6,7 +6,7 @@
 package algorithm.config;
 
 import java.util.function.Predicate;
-import algorithm.node.NodeAlgorithm;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
@@ -15,11 +15,11 @@ import algorithm.node.NodeAlgorithm;
  */
 public class AlgorithmRecursiveConfiguration<D> {
 
-    private final Predicate<NodeAlgorithm<D>> executeIf;
-    private final Predicate<NodeAlgorithm<D>> finishIf;
+    private final Predicate<NodeAlgorithmRecursive<D>> executeIf;
+    private final Predicate<NodeAlgorithmRecursive<D>> finishIf;
     private final int limitNumberIterations;
 
-    private AlgorithmRecursiveConfiguration(Predicate<NodeAlgorithm<D>> executeIf, Predicate<NodeAlgorithm<D>> finishIf, int limitNumberIterations) {
+    private AlgorithmRecursiveConfiguration(Predicate<NodeAlgorithmRecursive<D>> executeIf, Predicate<NodeAlgorithmRecursive<D>> finishIf, int limitNumberIterations) {
         this.executeIf = executeIf;
         this.finishIf = finishIf;
         this.limitNumberIterations = limitNumberIterations;
@@ -27,19 +27,19 @@ public class AlgorithmRecursiveConfiguration<D> {
     
     public static class Builder<D> {
 
-        private Predicate<NodeAlgorithm<D>> executeIf;
-        private Predicate<NodeAlgorithm<D>> finishIf;
+        private Predicate<NodeAlgorithmRecursive<D>> executeIf;
+        private Predicate<NodeAlgorithmRecursive<D>> finishIf;
         private int limitNumberIterations;
 
         public Builder() {
         }
 
-        public Builder<D> executeIf(Predicate<NodeAlgorithm<D>> executeIf) {
+        public Builder<D> executeIf(Predicate<NodeAlgorithmRecursive<D>> executeIf) {
             this.executeIf = executeIf;
             return this;
         }
 
-        public Builder<D> finishIf(Predicate<NodeAlgorithm<D>> finishIf) {
+        public Builder<D> finishIf(Predicate<NodeAlgorithmRecursive<D>> finishIf) {
             this.finishIf = finishIf;
             return this;
         }
@@ -54,11 +54,11 @@ public class AlgorithmRecursiveConfiguration<D> {
         }
     }
 
-    public boolean isToExecute(NodeAlgorithm<D> t) {
+    public boolean isToExecute(NodeAlgorithmRecursive<D> t) {
         return executeIf.test(t);
     }
 
-    public boolean isFinish(NodeAlgorithm<D> t) {
+    public boolean isFinish(NodeAlgorithmRecursive<D> t) {
         return finishIf.test(t);
     }
 

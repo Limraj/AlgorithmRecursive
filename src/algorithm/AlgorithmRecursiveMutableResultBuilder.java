@@ -10,7 +10,7 @@ import algorithm.modifier.GenInstance;
 import algorithm.modifier.ModifierResultRecursive;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
-import algorithm.node.NodeAlgorithm;
+import algorithm.node.NodeAlgorithmRecursive;
 
 /**
  *
@@ -21,25 +21,25 @@ import algorithm.node.NodeAlgorithm;
 public class AlgorithmRecursiveMutableResultBuilder<D, R> {
     
     private final GenInstance<R> instanceGenerator;
-    private final NodeAlgorithm<D> start;
-    private Predicate<NodeAlgorithm<D>> executeIf;
-    private Predicate<NodeAlgorithm<D>> finishIf;
+    private final NodeAlgorithmRecursive<D> start;
+    private Predicate<NodeAlgorithmRecursive<D>> executeIf;
+    private Predicate<NodeAlgorithmRecursive<D>> finishIf;
     private BiConsumer<D, R> toExecute;
     private int limitNumberIterations;
 
-    public AlgorithmRecursiveMutableResultBuilder(NodeAlgorithm<D> start, GenInstance<R> instanceGenerator) {
+    public AlgorithmRecursiveMutableResultBuilder(NodeAlgorithmRecursive<D> start, GenInstance<R> instanceGenerator) {
         this.start = start;
         this.instanceGenerator = instanceGenerator;
         this.executeIf = a -> true;
         this.finishIf = a -> false;
     }
 
-    public AlgorithmRecursiveMutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithm<D>> finishIf) {
+    public AlgorithmRecursiveMutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithmRecursive<D>> finishIf) {
         this.finishIf = finishIf;
         return this;
     }
 
-    public AlgorithmRecursiveMutableResultBuilder<D, R> executeIf(Predicate<NodeAlgorithm<D>> executeIf) {
+    public AlgorithmRecursiveMutableResultBuilder<D, R> executeIf(Predicate<NodeAlgorithmRecursive<D>> executeIf) {
         this.executeIf = executeIf;
         return this;
     }
@@ -60,6 +60,6 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.mutableResultRecursive(toExecute, instanceGenerator));
+        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.mutableResult(toExecute, instanceGenerator));
     }
 }
