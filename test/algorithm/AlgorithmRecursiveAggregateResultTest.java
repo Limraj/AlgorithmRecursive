@@ -7,13 +7,10 @@ package algorithm;
 
 import algorithm.modifier.ResultRecursive;
 import impl.settlement_to_test.NodeSettlement;
-import impl.settlement_to_test.ResultSettlement;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +27,7 @@ public class AlgorithmRecursiveAggregateResultTest {
     @BeforeClass
     public static void initTest() {
         notFound = SettlementsAggregator.get("456").iterator().next();
-        aggregate = AlgorithmRecursive
+        aggregate = AlgorithmRecursiveFactory
                 .aggregateResult(new NodeSettlement(notFound))
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> false)

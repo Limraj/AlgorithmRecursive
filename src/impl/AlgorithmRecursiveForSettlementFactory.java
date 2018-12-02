@@ -6,6 +6,7 @@
 package impl;
 
 import algorithm.AlgorithmRecursive;
+import algorithm.AlgorithmRecursiveFactory;
 import impl.settlement_to_test.NodeSettlement;
 import impl.settlement_to_test.ResultSettlement;
 import impl.settlement_to_test.Settlement;
@@ -20,7 +21,7 @@ import java.util.function.Predicate;
 public class AlgorithmRecursiveForSettlementFactory {
         
     public static AlgorithmRecursive<Settlement, ResultSettlement> searchSettlementFirst(Settlement settlement, Predicate<NodeAlgorithm<Settlement>> searchCondition) {
-        return AlgorithmRecursive
+        return AlgorithmRecursiveFactory
                 .mutableResult(new NodeSettlement(settlement), () -> new ResultSettlement())
                 .executeIf(searchCondition)
                 .finishIf(searchCondition)
@@ -29,7 +30,7 @@ public class AlgorithmRecursiveForSettlementFactory {
     }
     
     public static AlgorithmRecursive<Settlement, ResultSettlement> searchSettlementLast(Settlement settlement, Predicate<NodeAlgorithm<Settlement>> searchCondition) {
-        return AlgorithmRecursive
+        return AlgorithmRecursiveFactory
                 .mutableResult(new NodeSettlement(settlement), () -> new ResultSettlement())
                 .executeIf(searchCondition)
                 .finishIf(a -> false)
@@ -38,7 +39,7 @@ public class AlgorithmRecursiveForSettlementFactory {
     }
     
     public static AlgorithmRecursive<Settlement, List<Settlement>> aggregateSettlements(Settlement settlement, Predicate<NodeAlgorithm<Settlement>> searchCondition) {
-        return AlgorithmRecursive
+        return AlgorithmRecursiveFactory
                 .aggregateResult(new NodeSettlement(settlement))
                 .executeIf(searchCondition)
                 .finishIf(a -> false)
@@ -47,7 +48,7 @@ public class AlgorithmRecursiveForSettlementFactory {
     }
     
     public static AlgorithmRecursive<Settlement, List<Settlement>> aggregateSettlements(Settlement settlement, Predicate<NodeAlgorithm<Settlement>> searchCondition, Predicate<NodeAlgorithm<Settlement>> endCondition) {
-        return AlgorithmRecursive
+        return AlgorithmRecursiveFactory
                 .aggregateResult(new NodeSettlement(settlement))
                 .executeIf(searchCondition)
                 .finishIf(endCondition)

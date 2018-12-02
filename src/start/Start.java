@@ -6,8 +6,7 @@
 package start;
 
 import algorithm.AlgorithmRecursive;
-import algorithm.node.NodeAlgorithm;
-import impl.AlgorithmRecursiveFactory;
+import impl.AlgorithmRecursiveImplFactory;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
 import impl.settlement_to_test.ResultSettlement;
@@ -28,18 +27,18 @@ public class Start {
      */
     public static void main(String[] args) {
 
-        AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveFactory.factorial(700);
+        AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveImplFactory.factorial(700);
         factor.run();
         System.out.println("result:" + factor.result().getValue());
         factor.run();
         System.out.println("result:" + factor.result().getValue());
         
         File dir = new File("C://dev");
-        AlgorithmRecursive<File, List<File>> filesByExtension = AlgorithmRecursiveFactory.aggregateFilesByExtension(dir, Extension.DOCX);
+        AlgorithmRecursive<File, List<File>> filesByExtension = AlgorithmRecursiveImplFactory.aggregateFilesByExtension(dir, Extension.DOCX);
         filesByExtension.run();
         System.out.println("result:" + filesByExtension.result().getValue());
         
-        AlgorithmRecursive<File, List<File>> filesByName = AlgorithmRecursiveFactory.aggregateFilesByName(dir, "nameFile");
+        AlgorithmRecursive<File, List<File>> filesByName = AlgorithmRecursiveImplFactory.aggregateFilesByName(dir, "nameFile");
         filesByName.run();
         System.out.println("result:" + filesByName.result().getValue());
         

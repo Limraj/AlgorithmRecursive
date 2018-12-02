@@ -60,6 +60,6 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursive<>(start, config, ModifierResultRecursive.mutableResultRecursive(toExecute, instanceGenerator));
+        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.mutableResultRecursive(toExecute, instanceGenerator));
     }
 }
