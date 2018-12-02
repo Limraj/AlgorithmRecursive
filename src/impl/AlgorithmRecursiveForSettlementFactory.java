@@ -6,9 +6,9 @@
 package impl;
 
 import algorithm.AlgorithmRecursive;
-import impl.settlement.NodeSettlement;
-import impl.settlement.ResultSettlement;
-import impl.settlement.Settlement;
+import impl.settlement_to_test.NodeSettlement;
+import impl.settlement_to_test.ResultSettlement;
+import impl.settlement_to_test.Settlement;
 import algorithm.node.NodeAlgorithm;
 import java.util.List;
 import java.util.function.Predicate;

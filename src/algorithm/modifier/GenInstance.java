@@ -10,6 +10,7 @@ package algorithm.modifier;
  * @author Kamil-Tomasz
  * @param <R>
  */
+@FunctionalInterface
 public interface GenInstance<R> {
     R generate();
 }

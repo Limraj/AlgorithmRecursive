@@ -5,6 +5,7 @@
  */
 package algorithm.modifier;
 
+import algorithm.node.NodeAlgorithm;
 import java.util.function.BiFunction;
 
 
@@ -14,10 +15,10 @@ class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, 
     private final R reset;
     private R result;
     
-    public ImmutableResultRecursive(R result, BiFunction<D, R, R> toExecute) {
+    public ImmutableResultRecursive(BiFunction<D, R, R> toExecute, R result) {
         this.toExecute = toExecute;
-        this.result = result;
         this.reset = result;
+        this.result = result;
     }
 
     @Override
@@ -27,7 +28,7 @@ class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, 
 
     @Override
     public ResultRecursive<R> snapshot() {
-        return new ResultRecursiveImpl<>(result, numberIteration());
+        return ResultRecursive.newInstance(result, numberIteration());
     }
 
     @Override

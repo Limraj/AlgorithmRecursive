@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package impl.settlement;
+package impl.settlement_to_test;
 
 import algorithm.node.NodeAlgorithm;
 import java.util.List;
@@ -16,28 +16,24 @@ import java.util.stream.Collectors;
  */
 public class NodeSettlement implements NodeAlgorithm<Settlement> {
     
-    private final Settlement rozliczenie;
+    private final Settlement settlement;
 
     public NodeSettlement(Settlement rozliczenie) {
-        System.out.println("roz: " + rozliczenie);
-        this.rozliczenie = rozliczenie;
+        this.settlement = rozliczenie;
     }
 
     @Override
     public List<NodeAlgorithm<Settlement>> nodes() {
-        Set<Settlement> start = SettlementsAggregator.get(rozliczenie.getNr());
-        System.out.println("start: " + start);
+        Set<Settlement> start = SettlementsAggregator.get(settlement.getNumberMain());
         Set<Settlement> nodesNr1 = start.stream().flatMap(a -> SettlementsAggregator.get(a.getNr1()).stream()).collect(Collectors.toSet());
         Set<Settlement> nodesNr2 = start.stream().flatMap(a -> SettlementsAggregator.get(a.getNr2()).stream()).collect(Collectors.toSet());
         nodesNr1.addAll(nodesNr2);
-        //System.out.println("nodes: " + nodesNr1);
-        System.out.println("nodesNr2: " + nodesNr2);
         return nodesNr1.stream().map(a -> new NodeSettlement(a)).collect(Collectors.toList());
     }
 
     @Override
     public Settlement data() {
-        return rozliczenie;
+        return settlement;
     }
     
 }

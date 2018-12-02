@@ -60,7 +60,7 @@ public final class AlgorithmRecursiveFactory {
         return AlgorithmRecursive.immutableResult(new NodeInteger(arg), BigDecimal.ONE)
                         .finishIf(node -> node.data() < 2)
                         .executeIf(node -> true)
-                        .limitNumberIterations(949)
+                        .limitNumberIterations(700)
                         .toExecute((a,result) -> result.multiply(BigDecimal.valueOf(a)))
                         .build();
     }

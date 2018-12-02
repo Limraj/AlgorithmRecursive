@@ -52,11 +52,11 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
     }
 
     public AlgorithmRecursive<D, R> build() {
-        AlgorithmRecursiveConfiguration<D> config = new AlgorithmRecursiveConfiguration.Builder<>(start)
+        AlgorithmRecursiveConfiguration<D> config = new AlgorithmRecursiveConfiguration.Builder<D>()
             .executeIf(executeIf)
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursive<>(config, ModifierResultRecursive.immutableResultRecursive(result, toExecute));
+        return new AlgorithmRecursive<>(start, config, ModifierResultRecursive.immutableResultRecursive(toExecute, result));
     }
 }

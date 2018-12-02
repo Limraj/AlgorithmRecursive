@@ -30,6 +30,8 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
     public AlgorithmRecursiveMutableResultBuilder(NodeAlgorithm<D> start, GenInstance<R> instanceGenerator) {
         this.start = start;
         this.instanceGenerator = instanceGenerator;
+        this.executeIf = a -> true;
+        this.finishIf = a -> false;
     }
 
     public AlgorithmRecursiveMutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithm<D>> finishIf) {
@@ -53,11 +55,11 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
     }
 
     public AlgorithmRecursive<D, R> build() {
-        AlgorithmRecursiveConfiguration<D> config = new AlgorithmRecursiveConfiguration.Builder<>(start)
+        AlgorithmRecursiveConfiguration<D> config = new AlgorithmRecursiveConfiguration.Builder<D>()
             .executeIf(executeIf)
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
             .build();
-        return new AlgorithmRecursive<>(config, ModifierResultRecursive.mutableResultRecursive(instanceGenerator, toExecute));
+        return new AlgorithmRecursive<>(start, config, ModifierResultRecursive.mutableResultRecursive(toExecute, instanceGenerator));
     }
 }

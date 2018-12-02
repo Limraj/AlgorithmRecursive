@@ -5,6 +5,8 @@
  */
 package algorithm.modifier;
 
+import algorithm.node.NodeAlgorithm;
+
 /**
  *
  * @author Kamil-Tomasz

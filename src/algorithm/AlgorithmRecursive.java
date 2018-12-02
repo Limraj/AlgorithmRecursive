@@ -24,10 +24,12 @@ public final class AlgorithmRecursive<D, R> {
     
     private final AlgorithmRecursiveConfiguration<D> config;
     private final ModifierResultRecursive<D, R> modifier;
+    private NodeAlgorithm<D> start;
 
-    AlgorithmRecursive(AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
+    AlgorithmRecursive(NodeAlgorithm<D> start, AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
         this.config = config;
         this.modifier = modifier;
+        this.start = start;
     }
 
     public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(NodeAlgorithm<D> start, R result) {
@@ -42,19 +44,25 @@ public final class AlgorithmRecursive<D, R> {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, () -> new ArrayList<>());
     }
     
+    public void changeStartAndRun(NodeAlgorithm<D> start) {
+        this.start = start;
+        run();
+    }
+    
     public ResultRecursive<R> result() {
         return modifier.snapshot();
     }
     
-    public void start() {
+    public void run() {
         modifier.reset();
-        if(config.isToExecute(config.getStart()))
-            modifier.execute(config.getStart().data());
-        if(isEnd(config.getStart()))
+        modifier.incrementIteration();
+        if(config.isToExecute(start))
+            modifier.execute(start.data());
+        if(isEnd(start))
             return;
-        step(config.getStart());
+        step(start);
     }
-    
+
     private boolean isEnd(NodeAlgorithm<D> node) {
         return isLeaf(node) || config.isFinish(node);
     }
