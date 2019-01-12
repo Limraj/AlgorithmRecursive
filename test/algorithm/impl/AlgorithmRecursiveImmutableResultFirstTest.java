@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package algorithm.impl;
 
-import algorithm.modifier.ResultRecursive;
-import impl.settlement_to_test.NodeSettlement;
+import algorithm.AlgorithmRecursive;
+import impl.settlement_to_test.SettlementNode;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import algorithm.result.RecursiveResult;
 
 /**
  *
@@ -27,7 +28,7 @@ public class AlgorithmRecursiveImmutableResultFirstTest {
     public static void initTest() {
         initSettlement = null;
         notFound = SettlementsAggregator.get("456").iterator().next();
-        immutable = AlgorithmRecursiveBuilder.immutableResult(new NodeSettlement(notFound), initSettlement)
+        immutable = AlgorithmRecursiveBuilder.immutableResult(new SettlementNode(notFound), initSettlement)
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> a.data().getSearch().equals("yes"))
                 .toExecute((a,b) -> a)
@@ -37,10 +38,9 @@ public class AlgorithmRecursiveImmutableResultFirstTest {
     @Test
     public void testResultNotFound() {
         //given:
-        ResultRecursive<Settlement> expResult = ResultRecursive.newInstance(null, 1);
+        RecursiveResult<Settlement> expResult = RecursiveResult.newInstance(null, 1);
         //when:
-        immutable.run();
-        ResultRecursive<Settlement> result = immutable.result();
+        RecursiveResult<Settlement> result = immutable.runAndResult();
         //then:
         assertEquals(expResult, result);
     }
@@ -50,11 +50,9 @@ public class AlgorithmRecursiveImmutableResultFirstTest {
         //given:
         Settlement yes = SettlementsAggregator.get("566").iterator().next();
         Settlement start = SettlementsAggregator.get("123").iterator().next();
-        ResultRecursive<Settlement> expResult = ResultRecursive.newInstance(yes, 4);
-        
+        RecursiveResult<Settlement> expResult = RecursiveResult.newInstance(yes, 4);
         //when:
-        immutable.changeStartAndRun(new NodeSettlement(start));
-        ResultRecursive<Settlement> result = immutable.result();
+        RecursiveResult<Settlement> result = immutable.runAndResultForStart(new SettlementNode(start));
         //then:
         assertEquals(expResult, result);
     }

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.modifier;
+package algorithm.impl;
 
 import java.util.function.BiFunction;
-import algorithm.node.NodeAlgorithmRecursive;
+import algorithm.result.RecursiveResult;
 
 
 class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {
@@ -27,8 +27,8 @@ class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, 
     }
 
     @Override
-    public ResultRecursive<R> snapshot() {
-        return ResultRecursive.newInstance(result, numberIteration());
+    public RecursiveResult<R> snapshot() {
+        return RecursiveResult.newInstance(result, numberIterations());
     }
 
     @Override

@@ -11,10 +11,10 @@ import java.math.BigDecimal;
  *
  * @author Kamil-Tomasz
  */
-public class ResultBigDecimal {
+public class BigDecimalResult {
     private BigDecimal result;
 
-    public ResultBigDecimal(BigDecimal result) {
+    public BigDecimalResult(BigDecimal result) {
         this.result = result;
     }
 

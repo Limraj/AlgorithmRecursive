@@ -3,35 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package algorithm.impl;
 
-import algorithm.modifier.ResultRecursive;
-import impl.settlement_to_test.NodeSettlement;
-import impl.settlement_to_test.ResultSettlement;
+import algorithm.AlgorithmRecursive;
+import impl.settlement_to_test.SettlementNode;
+import impl.settlement_to_test.SettlementResult;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import algorithm.result.RecursiveResult;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class AlgorithmRecursiveMutableResultFirstTest {
+public class AlgorithmRecursiveMutableResultLastTest {
     
     private static Settlement notFound;
-    private static AlgorithmRecursive<Settlement, ResultSettlement> mutable;
+    private static AlgorithmRecursive<Settlement, SettlementResult> mutable;
     
     @BeforeClass
     public static void initTest() {
         notFound = SettlementsAggregator.get("456").iterator().next();
         mutable = AlgorithmRecursiveBuilder
-                .mutableResult(new NodeSettlement(notFound), () -> new ResultSettlement())
+                .mutableResult(new SettlementNode(notFound), () -> new SettlementResult())
                 .executeIf(a -> a.data().getSearch().equals("yes"))
-                .finishIf(a -> a.data().getSearch().equals("yes"))
+                .finishIf(a -> false)
                 .toExecute((a,b) -> b.setSettlement(a))
                 .build();
     }
@@ -39,25 +38,23 @@ public class AlgorithmRecursiveMutableResultFirstTest {
     @Test
     public void testResultNotFound() {
         //given:
-        ResultRecursive<ResultSettlement> expResult = ResultRecursive.newInstance(new ResultSettlement(), 1);
+        RecursiveResult<SettlementResult> expResult = RecursiveResult.newInstance(new SettlementResult(), 1);
         //when:
-        mutable.run();
-        ResultRecursive<ResultSettlement> result = mutable.result();
+        RecursiveResult<SettlementResult> result = mutable.runAndResult();
         //then:
         assertEquals(expResult, result);
     }
     
     @Test
-    public void testResultFoundFirstInBranch() {
+    public void testResultFoundLastInBranch() {
         //given:
-        Settlement yes = SettlementsAggregator.get("566").iterator().next();
-        ResultSettlement end = new ResultSettlement();
+        Settlement yes = SettlementsAggregator.get("118").iterator().next();
+        SettlementResult end = new SettlementResult();
         end.setSettlement(yes);
-        ResultRecursive<ResultSettlement> expResult = ResultRecursive.newInstance(end, 4);
+        RecursiveResult<SettlementResult> expResult = RecursiveResult.newInstance(end, 11);
         Settlement start = SettlementsAggregator.get("123").iterator().next();
         //when:
-        mutable.changeStartAndRun(new NodeSettlement(start));
-        ResultRecursive<ResultSettlement> result = mutable.result();
+        RecursiveResult<SettlementResult> result = mutable.runAndResultForStart(new SettlementNode(start));
         //then:
         assertEquals(expResult, result);
     }

@@ -5,17 +5,24 @@
  */
 package algorithm;
 
-import algorithm.modifier.ResultRecursive;
-import algorithm.node.NodeAlgorithmRecursive;
+import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.result.RecursiveResult;
 
 /**
  *
  * @author Kamil-Tomasz
  * @param <D>
  * @param <R>
+ * Deprecated method not safe for thread
  */
 public interface AlgorithmRecursive<D, R> {
+    @Deprecated
     void run();
-    void changeStartAndRun(NodeAlgorithmRecursive<D> start);
-    ResultRecursive<R> result();
+    @Deprecated
+    void changeStartAndRun(AlgorithmRecursiveNode<D> start);
+    @Deprecated
+    RecursiveResult<R> result();
+    
+    RecursiveResult<R> runAndResult();
+    RecursiveResult<R> runAndResultForStart(AlgorithmRecursiveNode<D> start);
 }

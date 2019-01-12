@@ -6,15 +6,10 @@
 package impl;
 
 import algorithm.AlgorithmRecursive;
-import algorithm.AlgorithmRecursiveBuilder;
-import impl.file.NodeFile;
-import impl.number.NodeInteger;
-import impl.file.ext.Extension;
-import java.io.File;
+import algorithm.impl.AlgorithmRecursiveBuilder;
+import impl.number.FactorialNode;
+import impl.number.FibonacciNode;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Set;
-import impl.file.util.FileUtil;
 
 /**
  *
@@ -23,11 +18,17 @@ import impl.file.util.FileUtil;
 public final class AlgorithmRecursiveNumericFactory {
 
     public static AlgorithmRecursive<Integer, BigDecimal> factorial(int arg) {
-        return AlgorithmRecursiveBuilder.immutableResult(new NodeInteger(arg), BigDecimal.ONE)
-                        .finishIf(node -> node.data() < 2)
-                        .executeIf(node -> true)
-                        .limitNumberIterations(10000)
+        return AlgorithmRecursiveBuilder.immutableResult(new FactorialNode(1), BigDecimal.ONE)
+                        .finishIf(node -> node.data() >= arg)
+                        .limitNumberIterations(6500)
                         .toExecute((a,result) -> result.multiply(BigDecimal.valueOf(a)))
+                        .build();
+    }
+    
+    public static AlgorithmRecursive<int[], Integer> fibonacci(int arg) {
+        return AlgorithmRecursiveBuilder.immutableResult(new FibonacciNode(new int[]{0, 1}), 0)
+                        .endPostIterations(arg)
+                        .toExecute((a,result) -> a[0])
                         .build();
     }
 }

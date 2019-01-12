@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package algorithm.impl;
 
-import algorithm.modifier.ResultRecursive;
-import impl.settlement_to_test.NodeSettlement;
+import algorithm.AlgorithmRecursive;
+import impl.settlement_to_test.SettlementNode;
 import impl.settlement_to_test.Settlement;
 import impl.settlement_to_test.SettlementsAggregator;
 import java.util.Collections;
@@ -14,6 +14,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import algorithm.result.RecursiveResult;
 
 /**
  *
@@ -28,7 +29,7 @@ public class AlgorithmRecursiveAggregateResultTest {
     public static void initTest() {
         notFound = SettlementsAggregator.get("456").iterator().next();
         aggregate = AlgorithmRecursiveBuilder
-                .aggregateResult(new NodeSettlement(notFound))
+                .aggregateResult(new SettlementNode(notFound))
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> false)
                 .toExecute((a,b) -> b.add(a))
@@ -38,10 +39,9 @@ public class AlgorithmRecursiveAggregateResultTest {
     @Test
     public void testResultNotFound() {
         //given:
-        ResultRecursive<List<Settlement>> expResult = ResultRecursive.newInstance(Collections.emptyList(), 1);
+        RecursiveResult<List<Settlement>> expResult = RecursiveResult.newInstance(Collections.emptyList(), 1);
         //when:
-        aggregate.changeStartAndRun(new NodeSettlement(notFound));
-        ResultRecursive<List<Settlement>> result = aggregate.result();
+        RecursiveResult<List<Settlement>> result = aggregate.runAndResultForStart(new SettlementNode(notFound));
         //then:
         assertEquals(expResult, result);
     }
@@ -51,13 +51,12 @@ public class AlgorithmRecursiveAggregateResultTest {
         //given:
         Settlement start = SettlementsAggregator.get("123").iterator().next();
         List<Settlement> end = SettlementsAggregator.getPreservedOrder("236", "566", "118");
-        ResultRecursive<List<Settlement>> expResult = ResultRecursive.newInstance(end, 11);
+        RecursiveResult<List<Settlement>> expResult = RecursiveResult.newInstance(end, 11);
         //when:
-        aggregate.changeStartAndRun(new NodeSettlement(start));
-        ResultRecursive<List<Settlement>> result = aggregate.result();
+        RecursiveResult<List<Settlement>> result = aggregate.runAndResultForStart(new SettlementNode(start));
         //then:
         assertEquals(3, result.getValue().size());
-        assertEquals(11, result.getNumberIteration());
+        assertEquals(11, result.getNumberIterations());
         assertEquals(expResult, result);
     }
 }

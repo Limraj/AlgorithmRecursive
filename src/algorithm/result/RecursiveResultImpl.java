@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.modifier;
+package algorithm.result;
 
 import java.util.Objects;
 
 
-class ResultRecursiveImpl<T> implements ResultRecursive<T> {
+class RecursiveResultImpl<T> implements RecursiveResult<T> {
     
     private final T value;
     private final long numberIteration;
 
-    public ResultRecursiveImpl(T value, long numberIteration) {
+    public RecursiveResultImpl(T value, long numberIteration) {
         this.value = value;
         this.numberIteration = numberIteration;
     }
@@ -24,7 +24,7 @@ class ResultRecursiveImpl<T> implements ResultRecursive<T> {
     }
 
     @Override
-    public long getNumberIteration() {
+    public long getNumberIterations() {
         return numberIteration;
     }
 
@@ -47,7 +47,7 @@ class ResultRecursiveImpl<T> implements ResultRecursive<T> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ResultRecursiveImpl<?> other = (ResultRecursiveImpl<?>) obj;
+        final RecursiveResultImpl<?> other = (RecursiveResultImpl<?>) obj;
         if (this.numberIteration != other.numberIteration) {
             return false;
         }
