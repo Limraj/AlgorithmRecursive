@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package algorithm.impl;
 
-import algorithm.modifier.GenInstance;
 import java.util.ArrayList;
 import java.util.List;
-import algorithm.node.NodeAlgorithmRecursive;
+import java.util.function.Supplier;
+import algorithm.node.AlgorithmRecursiveNode;
 
 /**
  *
@@ -16,15 +16,15 @@ import algorithm.node.NodeAlgorithmRecursive;
  */
 public class AlgorithmRecursiveBuilder {
     
-    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(NodeAlgorithmRecursive<D> start, R result) {
+    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(AlgorithmRecursiveNode<D> start, R result) {
         return new AlgorithmRecursiveImmutableResultBuilder<>(start, result);
     }
     
-    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(NodeAlgorithmRecursive<D> start, GenInstance<R> instanceGenerator) {
+    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(AlgorithmRecursiveNode<D> start, Supplier<R> instanceGenerator) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, instanceGenerator);
     }
     
-    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(NodeAlgorithmRecursive<D> start) {
+    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(AlgorithmRecursiveNode<D> start) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, () -> new ArrayList<>());
     }
 }

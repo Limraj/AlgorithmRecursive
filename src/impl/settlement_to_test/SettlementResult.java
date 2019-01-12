@@ -11,10 +11,10 @@ import java.util.Objects;
  *
  * @author Kamil-Tomasz
  */
-public class ResultSettlement {
+public class SettlementResult {
     private Settlement settlement;
 
-    public ResultSettlement() {
+    public SettlementResult() {
     }
 
     public Settlement getSettlement() {
@@ -43,7 +43,7 @@ public class ResultSettlement {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ResultSettlement other = (ResultSettlement) obj;
+        final SettlementResult other = (SettlementResult) obj;
         return Objects.equals(this.settlement, other.settlement);
     }
 

@@ -8,27 +8,27 @@ package impl.settlement_to_test;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import algorithm.node.NodeAlgorithmRecursive;
+import algorithm.node.AlgorithmRecursiveNode;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class NodeSettlement implements NodeAlgorithmRecursive<Settlement> {
+public class SettlementNode implements AlgorithmRecursiveNode<Settlement> {
     
     private final Settlement settlement;
 
-    public NodeSettlement(Settlement rozliczenie) {
+    public SettlementNode(Settlement rozliczenie) {
         this.settlement = rozliczenie;
     }
 
     @Override
-    public List<NodeAlgorithmRecursive<Settlement>> nodes() {
+    public List<AlgorithmRecursiveNode<Settlement>> nodes() {
         Set<Settlement> start = SettlementsAggregator.get(settlement.getNumberMain());
         Set<Settlement> nodesNr1 = start.stream().flatMap(a -> SettlementsAggregator.get(a.getNr1()).stream()).collect(Collectors.toSet());
         Set<Settlement> nodesNr2 = start.stream().flatMap(a -> SettlementsAggregator.get(a.getNr2()).stream()).collect(Collectors.toSet());
         nodesNr1.addAll(nodesNr2);
-        return nodesNr1.stream().map(a -> new NodeSettlement(a)).collect(Collectors.toList());
+        return nodesNr1.stream().map(a -> new SettlementNode(a)).collect(Collectors.toList());
     }
 
     @Override

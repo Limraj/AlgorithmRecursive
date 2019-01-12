@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.modifier;
+package algorithm.impl;
 
 /**
  *
  * @author Kamil-Tomasz
- * @param <R>
  */
-@FunctionalInterface
-public interface GenInstance<R> {
-    R generate();
+public class OperateConfiguration {
+    
 }

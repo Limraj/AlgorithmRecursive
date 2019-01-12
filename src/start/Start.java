@@ -6,12 +6,14 @@
 package start;
 
 import algorithm.AlgorithmRecursive;
+import algorithm.impl.AlgorithmRecursiveBuilder;
 import impl.AlgorithmRecursiveFileFactory;
 import impl.AlgorithmRecursiveNumericFactory;
 import java.util.List;
 import impl.file.ext.Extension;
 import java.io.File;
 import java.math.BigDecimal;
+import algorithm.result.RecursiveResult;
 
 /**
  *
@@ -23,10 +25,9 @@ public class Start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+/*
         AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveNumericFactory.factorial(6500);
         runAndPrintResult(factor);
-        
         File dev = new File("C:\\dev");
         AlgorithmRecursive<File, List<File>> filesByExtension = AlgorithmRecursiveFileFactory.aggregateFilesByExtension(dev, Extension.UNKNOWN);
         runAndPrintResultAggregate(filesByExtension);
@@ -35,20 +36,25 @@ public class Start {
         runAndPrintResultAggregate(filesByName);
         
         AlgorithmRecursive<File, List<File>> filesAll = AlgorithmRecursiveFileFactory.aggregateFiles(dev);
-        runAndPrintResultAggregate(filesAll);
+        runAndPrintResultAggregate(filesAll);*/
+
+        //AlgorithmRecursive<Integer, BigDecimal> fibocciani = Algo
+        AlgorithmRecursive<int[], Integer> fibonacci = AlgorithmRecursiveNumericFactory.fibonacci(7);
+        runAndPrintResult(fibonacci);
+        
     }
     
     public static <D, R> void runAndPrintResult(AlgorithmRecursive<D, R> algorithm) {
-        algorithm.run();
-        System.out.println("number iterations: " + algorithm.result().getNumberIteration());
-        System.out.println("result value: " + algorithm.result().getValue());
+        RecursiveResult<R> result = algorithm.runAndResult();
+        System.out.println("number iterations: " + result.getNumberIterations());
+        System.out.println("result value: " + result.getValue());
     }
     
     public static <D> void runAndPrintResultAggregate(AlgorithmRecursive<D, List<D>> algorithm) {
-        algorithm.run();
-        System.out.println("number iterations: " + algorithm.result().getNumberIteration());
+        RecursiveResult<List<D>> result = algorithm.runAndResult();
+        System.out.println("number iterations: " + result.getNumberIterations());
         System.out.println("result value: ");
-        algorithm.result().getValue().forEach(a -> System.out.println(a));
-        System.out.println("result size: " + algorithm.result().getValue().size());
+        result.getValue().forEach(a -> System.out.println(a));
+        System.out.println("result size: " + result.getValue().size());
     }
 }

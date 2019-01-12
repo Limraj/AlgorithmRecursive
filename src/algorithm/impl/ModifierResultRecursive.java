@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.modifier;
+package algorithm.impl;
 
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
-import algorithm.node.NodeAlgorithmRecursive;
+import java.util.function.Supplier;
+import algorithm.result.RecursiveResult;
 
 /**
  *
@@ -15,14 +16,15 @@ import algorithm.node.NodeAlgorithmRecursive;
  * @param <D>
  * @param <R>
  */
-public interface ModifierResultRecursive<D, R> {
+interface ModifierResultRecursive<D, R> {
     void reset();
     void execute(D value);
-    void incrementIteration();
+    void incrementIterations();
     boolean hasBeenExceeded(int limit);
-    ResultRecursive<R> snapshot();
+    boolean isEndOfIterations(int endOfIterations);
+    RecursiveResult<R> snapshot();
     
-    static <D, R> ModifierResultRecursive<D, R> mutableResult(BiConsumer<D, R> toExecute, GenInstance<R> instanceGenerator) {
+    static <D, R> ModifierResultRecursive<D, R> mutableResult(BiConsumer<D, R> toExecute, Supplier<R> instanceGenerator) {
         return new MutableResultRecursive<>(toExecute, instanceGenerator);
     }
     

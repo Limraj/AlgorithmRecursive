@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm;
+package algorithm.impl;
 
-import algorithm.config.AlgorithmRecursiveConfiguration;
-import algorithm.modifier.ModifierResultRecursive;
+import algorithm.AlgorithmRecursive;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
-import algorithm.node.NodeAlgorithmRecursive;
+import algorithm.node.AlgorithmRecursiveNode;
 
 /**
  *
@@ -19,24 +18,29 @@ import algorithm.node.NodeAlgorithmRecursive;
  */
 public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
     
-    private Predicate<NodeAlgorithmRecursive<D>> executeIf;
-    private Predicate<NodeAlgorithmRecursive<D>> finishIf;
+    private Predicate<AlgorithmRecursiveNode<D>> executeIf;
+    private Predicate<AlgorithmRecursiveNode<D>> finishIf;
     private BiFunction<D, R, R> toExecute;
     private int limitNumberIterations;
-    private final NodeAlgorithmRecursive<D> start;
+    private int endOfIterations;
+    private final AlgorithmRecursiveNode<D> start;
     private final R result;
 
-    public AlgorithmRecursiveImmutableResultBuilder(NodeAlgorithmRecursive<D> start, R result) {
+    AlgorithmRecursiveImmutableResultBuilder(AlgorithmRecursiveNode<D> start, R result) {
         this.start = start;
         this.result = result;
+        this.executeIf = a -> true;
+        this.finishIf = a -> false;
+        this.limitNumberIterations = -1;
+        this.endOfIterations = -1;
     }
 
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<NodeAlgorithmRecursive<D>> finishIf) {
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<AlgorithmRecursiveNode<D>> finishIf) {
         this.finishIf = finishIf;
         return this;
     }
 
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<NodeAlgorithmRecursive<D>> executeIf) {
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<AlgorithmRecursiveNode<D>> executeIf) {
         this.executeIf = executeIf;
         return this;
     }
@@ -50,12 +54,18 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
         this.limitNumberIterations = limitNumberIterations;
         return this;
     }
+    
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> endPostIterations(int endOfIterations) {
+        this.endOfIterations = endOfIterations;
+        return this;
+    }
 
     public AlgorithmRecursive<D, R> build() {
         AlgorithmRecursiveConfiguration<D> config = new AlgorithmRecursiveConfiguration.Builder<D>()
             .executeIf(executeIf)
             .finishIf(finishIf)
             .limitNumberIterations(limitNumberIterations)
+            .endOfIterations(endOfIterations)
             .build();
         return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.immutableResult(toExecute, result));
     }

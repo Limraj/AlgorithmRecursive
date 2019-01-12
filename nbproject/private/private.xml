@@ -4,31 +4,35 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/ImmutableResultRecursive.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/AbstractModifierResultRecursive.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/AbstractModifierResultRecursive.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/settlement_to_test/SettlementsAggregator.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/ModifierResultRecursive.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/MutableExecutableImpl.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/node/NodeAlgorithmRecursive.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/config/AlgorithmRecursiveConfiguration.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/exception/IterationLimitHasBeenExceededException.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/node/NodeAlgorithm.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/file/NodeFile.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/file/NodeFile.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveImpl.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/algorithm/AlgorithmRecursiveAggregateResultFirstTest.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveImmutableResultBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/AlgorithmRecursiveFileFactory.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/AlgorithmRecursiveFibonacci.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/algorithm/AlgorithmRecursiveImmutableResultLastTest.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/number/NodeFibonacci.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveMutableResultBuilder.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/MutableExecutable.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/MutableResultBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/settlement_to_test/NodeSettlement.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/ResultRecursive.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveBuildable.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/algorithm/AlgorithmRecursiveMutableResultFirstTest.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/AlgorithmRecursiveSettlementFactory.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/start/Start.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/ext/Extension.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/util/FileUtil.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/settlement/NodeSettlement.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/modifier/MutableResultRecursive.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/number/NodeInteger.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursiveFactory.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/algorithm/AlgorithmRecursiveMutableResultLastTest.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/algorithm/AlgorithmRecursiveAggregateResultTest.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/impl/AlgorithmRecursiveNumericFactoryTest.java</file>
             <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/AlgorithmRecursive.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/impl/number/ResultBigDecimal.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/ImmutableExecutable.java</file>
-            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/algorithm/ImmutableResultBuilder.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/test/algorithm/AlgorithmRecursiveImmutableResultFirstTest.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/AlgorithmRecursiveNumericFactory.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/AlgorithmRecursiveFactorial.java</file>
+            <file>file:/C:/Users/Kamil-Tomasz/Documents/NetBeansProjects/AlgorithmRecursive/src/impl/number/NodeFactorial.java</file>
         </group>
     </open-files>
 </project-private>

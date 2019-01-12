@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.modifier;
+package algorithm.impl;
 
 import java.util.function.BiConsumer;
-import algorithm.node.NodeAlgorithmRecursive;
+import java.util.function.Supplier;
+import algorithm.result.RecursiveResult;
 
 /**
  *
@@ -17,13 +18,13 @@ import algorithm.node.NodeAlgorithmRecursive;
 class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R> {
  
     private final BiConsumer<D, R> toExecute;
-    private final GenInstance<R> instanceGenerator;
+    private final Supplier<R> instanceGenerator;
     private R result;
     
-    public MutableResultRecursive(BiConsumer<D, R> toExecute, GenInstance<R> instanceGenerator) {
+    public MutableResultRecursive(BiConsumer<D, R> toExecute, Supplier<R> instanceGenerator) {
         this.toExecute = toExecute;
         this.instanceGenerator = instanceGenerator;
-        this.result = instanceGenerator.generate();
+        this.result = instanceGenerator.get();
     }
 
     @Override
@@ -32,13 +33,13 @@ class MutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, R>
     }
 
     @Override
-    public ResultRecursive<R> snapshot() {
-        return ResultRecursive.newInstance(result, numberIteration());
+    public RecursiveResult<R> snapshot() {
+        return RecursiveResult.newInstance(result, numberIterations());
     }
 
     @Override
     public void reset() {
-        result = instanceGenerator.generate();
+        result = instanceGenerator.get();
         super.reset();
     }
 }

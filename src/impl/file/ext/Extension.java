@@ -28,7 +28,7 @@ public enum Extension {
         this.extensionName = ext;
     }
 
-    public static Set<Extension> docExtension() {
+    public static Set<Extension> docExtensions() {
         Set<Extension> ext = new HashSet<>(Arrays.asList(Extension.values()));
         ext.remove(UNKNOWN);
         return Collections.unmodifiableSet(ext);

@@ -12,7 +12,7 @@ import java.util.List;
  * @author kamil.jarmusik
  * @param <T>
  */
-public interface NodeAlgorithmRecursive<T> {
-    List<NodeAlgorithmRecursive<T>> nodes();
+public interface AlgorithmRecursiveNode<T> {
+    List<AlgorithmRecursiveNode<T>> nodes();
     T data();
 }

@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithm.modifier;
+package algorithm.result;
 
 /**
  *
  * @author Kamil-Tomasz
  * @param <T>
  */
-public interface ResultRecursive<T> {
+public interface RecursiveResult<T> {
     T getValue();
-    long getNumberIteration();
+    long getNumberIterations();
 
-    static <T> ResultRecursive<T> newInstance(T value, long numberIteration) {
-        return new ResultRecursiveImpl<>(value, numberIteration);
+    static <T> RecursiveResult<T> newInstance(T value, long numberIteration) {
+        return new RecursiveResultImpl<>(value, numberIteration);
     }
 }
