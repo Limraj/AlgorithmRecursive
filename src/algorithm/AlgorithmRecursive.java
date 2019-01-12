@@ -5,8 +5,8 @@
  */
 package algorithm;
 
-import algorithm.node.AlgorithmRecursiveNode;
 import algorithm.result.RecursiveResult;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -16,13 +16,6 @@ import algorithm.result.RecursiveResult;
  * Deprecated method not safe for thread
  */
 public interface AlgorithmRecursive<D, R> {
-    @Deprecated
-    void run();
-    @Deprecated
-    void changeStartAndRun(AlgorithmRecursiveNode<D> start);
-    @Deprecated
-    RecursiveResult<R> result();
-    
     RecursiveResult<R> runAndResult();
-    RecursiveResult<R> runAndResultForStart(AlgorithmRecursiveNode<D> start);
+    RecursiveResult<R> runAndResultForStart(RecursiveNode<D> start);
 }

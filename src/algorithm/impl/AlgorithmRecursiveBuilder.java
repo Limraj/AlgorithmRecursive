@@ -8,7 +8,7 @@ package algorithm.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -16,15 +16,15 @@ import algorithm.node.AlgorithmRecursiveNode;
  */
 public class AlgorithmRecursiveBuilder {
     
-    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(AlgorithmRecursiveNode<D> start, R result) {
+    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(RecursiveNode<D> start, R result) {
         return new AlgorithmRecursiveImmutableResultBuilder<>(start, result);
     }
     
-    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(AlgorithmRecursiveNode<D> start, Supplier<R> instanceGenerator) {
+    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(RecursiveNode<D> start, Supplier<R> instanceGenerator) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, instanceGenerator);
     }
     
-    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(AlgorithmRecursiveNode<D> start) {
+    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(RecursiveNode<D> start) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, () -> new ArrayList<>());
     }
 }

@@ -8,7 +8,7 @@ package algorithm.impl;
 import algorithm.AlgorithmRecursive;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -18,15 +18,15 @@ import algorithm.node.AlgorithmRecursiveNode;
  */
 public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
     
-    private Predicate<AlgorithmRecursiveNode<D>> executeIf;
-    private Predicate<AlgorithmRecursiveNode<D>> finishIf;
+    private Predicate<RecursiveNode<D>> executeIf;
+    private Predicate<RecursiveNode<D>> finishIf;
     private BiFunction<D, R, R> toExecute;
     private int limitNumberIterations;
     private int endOfIterations;
-    private final AlgorithmRecursiveNode<D> start;
+    private final RecursiveNode<D> start;
     private final R result;
 
-    AlgorithmRecursiveImmutableResultBuilder(AlgorithmRecursiveNode<D> start, R result) {
+    AlgorithmRecursiveImmutableResultBuilder(RecursiveNode<D> start, R result) {
         this.start = start;
         this.result = result;
         this.executeIf = a -> true;
@@ -35,12 +35,12 @@ public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
         this.endOfIterations = -1;
     }
 
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<AlgorithmRecursiveNode<D>> finishIf) {
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<RecursiveNode<D>> finishIf) {
         this.finishIf = finishIf;
         return this;
     }
 
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<AlgorithmRecursiveNode<D>> executeIf) {
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<RecursiveNode<D>> executeIf) {
         this.executeIf = executeIf;
         return this;
     }

@@ -9,7 +9,7 @@ import algorithm.AlgorithmRecursive;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -20,14 +20,14 @@ import algorithm.node.AlgorithmRecursiveNode;
 public class AlgorithmRecursiveMutableResultBuilder<D, R> {
     
     private final Supplier<R> instanceGenerator;
-    private final AlgorithmRecursiveNode<D> start;
-    private Predicate<AlgorithmRecursiveNode<D>> executeIf;
-    private Predicate<AlgorithmRecursiveNode<D>> finishIf;
+    private final RecursiveNode<D> start;
+    private Predicate<RecursiveNode<D>> executeIf;
+    private Predicate<RecursiveNode<D>> finishIf;
     private BiConsumer<D, R> toExecute;
     private int limitNumberIterations;
     private int endOfIterations;
 
-    AlgorithmRecursiveMutableResultBuilder(AlgorithmRecursiveNode<D> start, Supplier<R> instanceGenerator) {
+    AlgorithmRecursiveMutableResultBuilder(RecursiveNode<D> start, Supplier<R> instanceGenerator) {
         this.start = start;
         this.instanceGenerator = instanceGenerator;
         this.executeIf = a -> true;
@@ -36,12 +36,12 @@ public class AlgorithmRecursiveMutableResultBuilder<D, R> {
         this.endOfIterations = -1;
     }
 
-    public AlgorithmRecursiveMutableResultBuilder<D, R> finishIf(Predicate<AlgorithmRecursiveNode<D>> finishIf) {
+    public AlgorithmRecursiveMutableResultBuilder<D, R> finishIf(Predicate<RecursiveNode<D>> finishIf) {
         this.finishIf = finishIf;
         return this;
     }
 
-    public AlgorithmRecursiveMutableResultBuilder<D, R> executeIf(Predicate<AlgorithmRecursiveNode<D>> executeIf) {
+    public AlgorithmRecursiveMutableResultBuilder<D, R> executeIf(Predicate<RecursiveNode<D>> executeIf) {
         this.executeIf = executeIf;
         return this;
     }

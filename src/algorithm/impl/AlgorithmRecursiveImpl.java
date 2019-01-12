@@ -10,8 +10,8 @@ import algorithm.exception.IterationLimitHasBeenExceededException;
 import java.util.List;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import algorithm.node.AlgorithmRecursiveNode;
 import algorithm.result.RecursiveResult;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -23,9 +23,9 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
     
     private final AlgorithmRecursiveConfiguration<D> config;
     private final ModifierResultRecursive<D, R> modifier;
-    private volatile AlgorithmRecursiveNode<D> start;
+    private RecursiveNode<D> start;
     
-    AlgorithmRecursiveImpl(AlgorithmRecursiveNode<D> start, AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
+    AlgorithmRecursiveImpl(RecursiveNode<D> start, AlgorithmRecursiveConfiguration<D> config, ModifierResultRecursive<D, R> modifier) {
         this.config = config;
         this.modifier = modifier;
         this.start = start;
@@ -44,54 +44,26 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
     }
 
     @Override
-    public synchronized RecursiveResult<R> runAndResultForStart(AlgorithmRecursiveNode<D> start) {
+    public synchronized RecursiveResult<R> runAndResultForStart(RecursiveNode<D> start) {
         this.start = start;
         return runAndResult();
     }
     
-    @Override
-    public synchronized void changeStartAndRun(AlgorithmRecursiveNode<D> start) {
-        runAndResultForStart(start);
-    }
-    
-    @Override
-    public synchronized RecursiveResult<R> result() {
-        return modifier.snapshot();
-    }
-    
-    @Override
-    public synchronized void run() {
-        runAndResult();
-    }
-
-    private boolean isEnd(AlgorithmRecursiveNode<D> node) {
+    private boolean isEnd(RecursiveNode<D> node) {
         return isLeaf(node) || config.isFinish(node) || isEndOfIterations();
     }
     
-    private static <T> boolean isLeaf(AlgorithmRecursiveNode<T> node) {
-        List<AlgorithmRecursiveNode<T>> nodes = node.nodes();
+    private static <T> boolean isLeaf(RecursiveNode<T> node) {
+        List<RecursiveNode<T>> nodes = node.nodes();
         return nodes == null || nodes.isEmpty();
     }
     
-    private void step(AlgorithmRecursiveNode<D> start) {
+    private void step(RecursiveNode<D> start) {
         modifier.incrementIterations();
         ifHasBeenExceededThenThrowException();
-        forImpl(start);
-    }
-    
-    private void foreachImpl(AlgorithmRecursiveNode<D> start) {
-        for (AlgorithmRecursiveNode<D> node : start.nodes()) {
-            if(config.isToExecute(node))
-                modifier.execute(node.data());  
-            if(!isEnd(node))
-                step(node);
-        }
-    }
-    
-    private void forImpl(AlgorithmRecursiveNode<D> start) {
-        List<AlgorithmRecursiveNode<D>> nodes = start.nodes();
+        List<RecursiveNode<D>> nodes = start.nodes();
         for (int i = 0; i < nodes.size(); i++) {
-            AlgorithmRecursiveNode<D> node = nodes.get(i);
+            RecursiveNode<D> node = nodes.get(i);
             if(config.isToExecute(node))
                 modifier.execute(node.data());  
             if(!isEnd(node))
@@ -99,7 +71,27 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
         }
     }
     
-    private void sreamImpl(AlgorithmRecursiveNode<D> start) {
+    private void foreachImpl(RecursiveNode<D> start) {
+        for (RecursiveNode<D> node : start.nodes()) {
+            if(config.isToExecute(node))
+                modifier.execute(node.data());  
+            if(!isEnd(node))
+                step(node);
+        }
+    }
+    
+    private void forImpl(RecursiveNode<D> start) {
+        List<RecursiveNode<D>> nodes = start.nodes();
+        for (int i = 0; i < nodes.size(); i++) {
+            RecursiveNode<D> node = nodes.get(i);
+            if(config.isToExecute(node))
+                modifier.execute(node.data());  
+            if(!isEnd(node))
+                step(node);
+        }
+    }
+    
+    private void streamImpl(RecursiveNode<D> start) {
         start.nodes().stream().map(node -> {
             if(config.isToExecute(node))
                 modifier.execute(node.data());

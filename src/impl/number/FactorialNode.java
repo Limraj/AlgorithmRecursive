@@ -7,13 +7,13 @@ package impl.number;
 
 import java.util.ArrayList;
 import java.util.List;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class FactorialNode implements AlgorithmRecursiveNode<Integer> {
+public class FactorialNode implements RecursiveNode<Integer> {
     private final Integer data;
 
     public FactorialNode(Integer data) {
@@ -21,8 +21,8 @@ public class FactorialNode implements AlgorithmRecursiveNode<Integer> {
     }
 
     @Override
-    public List<AlgorithmRecursiveNode<Integer>> nodes() {
-        List<AlgorithmRecursiveNode<Integer>> nodes = new ArrayList<>();
+    public List<RecursiveNode<Integer>> nodes() {
+        List<RecursiveNode<Integer>> nodes = new ArrayList<>();
         nodes.add(new FactorialNode(data+1));
         return nodes;
     }

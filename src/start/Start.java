@@ -6,14 +6,14 @@
 package start;
 
 import algorithm.AlgorithmRecursive;
-import algorithm.impl.AlgorithmRecursiveBuilder;
-import impl.AlgorithmRecursiveFileFactory;
 import impl.AlgorithmRecursiveNumericFactory;
 import java.util.List;
+import algorithm.result.RecursiveResult;
+import impl.AlgorithmRecursiveFileFactory;
 import impl.file.ext.Extension;
 import java.io.File;
 import java.math.BigDecimal;
-import algorithm.result.RecursiveResult;
+import java.math.BigInteger;
 
 /**
  *
@@ -25,8 +25,7 @@ public class Start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-/*
-        AlgorithmRecursive<Integer, BigDecimal> factor = AlgorithmRecursiveNumericFactory.factorial(6500);
+        AlgorithmRecursive<Integer, BigInteger> factor = AlgorithmRecursiveNumericFactory.factorial(4500);
         runAndPrintResult(factor);
         File dev = new File("C:\\dev");
         AlgorithmRecursive<File, List<File>> filesByExtension = AlgorithmRecursiveFileFactory.aggregateFilesByExtension(dev, Extension.UNKNOWN);
@@ -36,9 +35,8 @@ public class Start {
         runAndPrintResultAggregate(filesByName);
         
         AlgorithmRecursive<File, List<File>> filesAll = AlgorithmRecursiveFileFactory.aggregateFiles(dev);
-        runAndPrintResultAggregate(filesAll);*/
-
-        //AlgorithmRecursive<Integer, BigDecimal> fibocciani = Algo
+        runAndPrintResultAggregate(filesAll);
+        
         AlgorithmRecursive<int[], Integer> fibonacci = AlgorithmRecursiveNumericFactory.fibonacci(7);
         runAndPrintResult(fibonacci);
         

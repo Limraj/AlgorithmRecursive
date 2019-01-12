@@ -6,7 +6,7 @@
 package algorithm.impl;
 
 import java.util.function.Predicate;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -15,12 +15,12 @@ import algorithm.node.AlgorithmRecursiveNode;
  */
 class AlgorithmRecursiveConfiguration<D> {
 
-    private final Predicate<AlgorithmRecursiveNode<D>> executeIf;
-    private final Predicate<AlgorithmRecursiveNode<D>> finishIf;
+    private final Predicate<RecursiveNode<D>> executeIf;
+    private final Predicate<RecursiveNode<D>> finishIf;
     private final int limitNumberIterations;
     private final int endOfIterations;
 
-    public AlgorithmRecursiveConfiguration(int limitNumberIterations, Predicate<AlgorithmRecursiveNode<D>> executeIf, Predicate<AlgorithmRecursiveNode<D>> finishIf, int endOfIterations) {
+    public AlgorithmRecursiveConfiguration(int limitNumberIterations, Predicate<RecursiveNode<D>> executeIf, Predicate<RecursiveNode<D>> finishIf, int endOfIterations) {
         this.executeIf = executeIf;
         this.finishIf = finishIf;
         this.limitNumberIterations = limitNumberIterations;
@@ -29,20 +29,20 @@ class AlgorithmRecursiveConfiguration<D> {
 
     public static class Builder<D> {
 
-        private Predicate<AlgorithmRecursiveNode<D>> executeIf;
-        private Predicate<AlgorithmRecursiveNode<D>> finishIf;
+        private Predicate<RecursiveNode<D>> executeIf;
+        private Predicate<RecursiveNode<D>> finishIf;
         private int limitNumberIterations;
         private int endOfIterations;
 
         public Builder() {
         }
 
-        public Builder<D> executeIf(Predicate<AlgorithmRecursiveNode<D>> executeIf) {
+        public Builder<D> executeIf(Predicate<RecursiveNode<D>> executeIf) {
             this.executeIf = executeIf;
             return this;
         }
 
-        public Builder<D> finishIf(Predicate<AlgorithmRecursiveNode<D>> finishIf) {
+        public Builder<D> finishIf(Predicate<RecursiveNode<D>> finishIf) {
             this.finishIf = finishIf;
             return this;
         }
@@ -62,11 +62,11 @@ class AlgorithmRecursiveConfiguration<D> {
         }
     }
 
-    public boolean isToExecute(AlgorithmRecursiveNode<D> t) {
+    public boolean isToExecute(RecursiveNode<D> t) {
         return executeIf.test(t);
     }
 
-    public boolean isFinish(AlgorithmRecursiveNode<D> t) {
+    public boolean isFinish(RecursiveNode<D> t) {
         return finishIf.test(t);
     }
 
