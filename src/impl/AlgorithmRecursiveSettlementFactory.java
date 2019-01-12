@@ -12,7 +12,7 @@ import impl.settlement_to_test.SettlementResult;
 import impl.settlement_to_test.Settlement;
 import java.util.List;
 import java.util.function.Predicate;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
@@ -20,7 +20,7 @@ import algorithm.node.AlgorithmRecursiveNode;
  */
 public class AlgorithmRecursiveSettlementFactory {
         
-    public static AlgorithmRecursive<Settlement, SettlementResult> searchSettlementFirst(Settlement settlement, Predicate<AlgorithmRecursiveNode<Settlement>> searchCondition) {
+    public static AlgorithmRecursive<Settlement, SettlementResult> searchSettlementFirst(Settlement settlement, Predicate<RecursiveNode<Settlement>> searchCondition) {
         return AlgorithmRecursiveBuilder
                 .mutableResult(new SettlementNode(settlement), () -> new SettlementResult())
                 .executeIf(searchCondition)
@@ -29,7 +29,7 @@ public class AlgorithmRecursiveSettlementFactory {
                 .build();
     }
     
-    public static AlgorithmRecursive<Settlement, SettlementResult> searchSettlementLast(Settlement settlement, Predicate<AlgorithmRecursiveNode<Settlement>> searchCondition) {
+    public static AlgorithmRecursive<Settlement, SettlementResult> searchSettlementLast(Settlement settlement, Predicate<RecursiveNode<Settlement>> searchCondition) {
         return AlgorithmRecursiveBuilder
                 .mutableResult(new SettlementNode(settlement), () -> new SettlementResult())
                 .executeIf(searchCondition)
@@ -37,7 +37,7 @@ public class AlgorithmRecursiveSettlementFactory {
                 .build();
     }
     
-    public static AlgorithmRecursive<Settlement, List<Settlement>> aggregateSettlements(Settlement settlement, Predicate<AlgorithmRecursiveNode<Settlement>> searchCondition) {
+    public static AlgorithmRecursive<Settlement, List<Settlement>> aggregateSettlements(Settlement settlement, Predicate<RecursiveNode<Settlement>> searchCondition) {
         return AlgorithmRecursiveBuilder
                 .aggregateResult(new SettlementNode(settlement))
                 .executeIf(searchCondition)
@@ -45,7 +45,7 @@ public class AlgorithmRecursiveSettlementFactory {
                 .build();
     }
     
-    public static AlgorithmRecursive<Settlement, List<Settlement>> aggregateSettlements(Settlement settlement, Predicate<AlgorithmRecursiveNode<Settlement>> searchCondition, Predicate<AlgorithmRecursiveNode<Settlement>> endCondition) {
+    public static AlgorithmRecursive<Settlement, List<Settlement>> aggregateSettlements(Settlement settlement, Predicate<RecursiveNode<Settlement>> searchCondition, Predicate<RecursiveNode<Settlement>> endCondition) {
         return AlgorithmRecursiveBuilder
                 .aggregateResult(new SettlementNode(settlement))
                 .executeIf(searchCondition)

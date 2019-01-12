@@ -8,13 +8,13 @@ package impl.number;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import algorithm.node.AlgorithmRecursiveNode;
+import algorithm.node.RecursiveNode;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class FibonacciNode implements AlgorithmRecursiveNode<int[]> {
+public class FibonacciNode implements RecursiveNode<int[]> {
     private final int[] data;
 
     public FibonacciNode(int[] data) {
@@ -22,8 +22,8 @@ public class FibonacciNode implements AlgorithmRecursiveNode<int[]> {
     }
 
     @Override
-    public List<AlgorithmRecursiveNode<int[]>> nodes() {
-        List<AlgorithmRecursiveNode<int[]>> nodes = new ArrayList<>();
+    public List<RecursiveNode<int[]>> nodes() {
+        List<RecursiveNode<int[]>> nodes = new ArrayList<>();
         nodes.add(new FibonacciNode(new int[] {data[1], data[1] + data[0]}));
         return nodes;
     }

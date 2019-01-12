@@ -10,6 +10,7 @@ import algorithm.impl.AlgorithmRecursiveBuilder;
 import impl.number.FactorialNode;
 import impl.number.FibonacciNode;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  *
@@ -17,11 +18,11 @@ import java.math.BigDecimal;
  */
 public final class AlgorithmRecursiveNumericFactory {
 
-    public static AlgorithmRecursive<Integer, BigDecimal> factorial(int arg) {
-        return AlgorithmRecursiveBuilder.immutableResult(new FactorialNode(1), BigDecimal.ONE)
+    public static AlgorithmRecursive<Integer, BigInteger> factorial(int arg) {
+        return AlgorithmRecursiveBuilder.immutableResult(new FactorialNode(1), BigInteger.ONE)
                         .finishIf(node -> node.data() >= arg)
                         .limitNumberIterations(6500)
-                        .toExecute((a,result) -> result.multiply(BigDecimal.valueOf(a)))
+                        .toExecute((a,result) -> result.multiply(BigInteger.valueOf(a)))
                         .build();
     }
     
