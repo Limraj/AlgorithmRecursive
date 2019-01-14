@@ -70,36 +70,6 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
                 step(node);
         }
     }
-    
-    private void foreachImpl(RecursiveNode<D> start) {
-        for (RecursiveNode<D> node : start.nodes()) {
-            if(config.isToExecute(node))
-                modifier.execute(node.data());  
-            if(!isEnd(node))
-                step(node);
-        }
-    }
-    
-    private void forImpl(RecursiveNode<D> start) {
-        List<RecursiveNode<D>> nodes = start.nodes();
-        for (int i = 0; i < nodes.size(); i++) {
-            RecursiveNode<D> node = nodes.get(i);
-            if(config.isToExecute(node))
-                modifier.execute(node.data());  
-            if(!isEnd(node))
-                step(node);
-        }
-    }
-    
-    private void streamImpl(RecursiveNode<D> start) {
-        start.nodes().stream().map(node -> {
-            if(config.isToExecute(node))
-                modifier.execute(node.data());
-            return node;
-        }).filter(node -> !isEnd(node)).forEachOrdered(node -> {
-            step(node);
-        });
-    }
 
     private void ifHasBeenExceededThenThrowException() {
         if(hasBeenExceeded())
