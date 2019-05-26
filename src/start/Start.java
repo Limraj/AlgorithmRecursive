@@ -27,19 +27,10 @@ public class Start {
     public static void main(String[] args) {
         AlgorithmRecursive<Integer, BigInteger> factor = AlgorithmRecursiveNumericFactory.factorial(4500);
         runAndPrintResult(factor);
-        File dev = new File("C:\\dev");
-        AlgorithmRecursive<File, List<File>> filesByExtension = AlgorithmRecursiveFileFactory.aggregateFilesByExtension(dev, Extension.UNKNOWN);
-        runAndPrintResultAggregate(filesByExtension);
-        
-        AlgorithmRecursive<File, List<File>> filesByName = AlgorithmRecursiveFileFactory.aggregateFilesByName(dev, "liferay");
-        runAndPrintResultAggregate(filesByName);
-        
-        AlgorithmRecursive<File, List<File>> filesAll = AlgorithmRecursiveFileFactory.aggregateFiles(dev);
-        runAndPrintResultAggregate(filesAll);
         
         AlgorithmRecursive<int[], Integer> fibonacci = AlgorithmRecursiveNumericFactory.fibonacci(7);
         runAndPrintResult(fibonacci);
-        
+       
     }
     
     public static <D, R> void runAndPrintResult(AlgorithmRecursive<D, R> algorithm) {
