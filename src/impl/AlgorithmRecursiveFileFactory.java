@@ -18,6 +18,7 @@ import java.util.Set;
  *
  * @author Kamil-Tomasz
  */
+@Deprecated
 public class AlgorithmRecursiveFileFactory {
     
     public static AlgorithmRecursive<File, List<File>> aggregateFiles(File dir) {
