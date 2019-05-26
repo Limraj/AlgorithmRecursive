@@ -17,5 +17,6 @@ import algorithm.node.RecursiveNode;
  */
 public interface AlgorithmRecursive<D, R> {
     RecursiveResult<R> runAndResult();
+    @Deprecated
     RecursiveResult<R> runAndResultForStart(RecursiveNode<D> start);
 }
