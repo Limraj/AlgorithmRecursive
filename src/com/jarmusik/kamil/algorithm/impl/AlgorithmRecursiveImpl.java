@@ -38,14 +38,20 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
     public RecursiveResult<R> runAndResultForStart(RecursiveNode<D> start) {
         return _runAndResult(start);
     }
+        
+    private synchronized RecursiveResult<R> _runAndResult(RecursiveNode<D> node) {
+        modifier.reset();
+        modifier.incrementIterations();
+        if(config.isToExecute(node))
+            modifier.execute(node.data());
+        if(_isEnd(node))
+            return modifier.snapshot();
+        _step(node);
+        return modifier.snapshot();
+    }
     
     private boolean _isEnd(RecursiveNode<D> node) {
         return _isLeaf(node) || config.isFinish(node) || _isEndOfIterations();
-    }
-    
-    private static <T> boolean _isLeaf(RecursiveNode<T> node) {
-        List<RecursiveNode<T>> nodes = node.nodes();
-        return nodes == null || nodes.isEmpty();
     }
     
     private void _step(RecursiveNode<D> start) {
@@ -60,6 +66,15 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
                 _step(node);
         }
     }
+    
+    private static <T> boolean _isLeaf(RecursiveNode<T> node) {
+        List<RecursiveNode<T>> nodes = node.nodes();
+        return nodes == null || nodes.isEmpty();
+    }
+           
+    private boolean _isEndOfIterations() {
+        return config.getEndOfIterations() > -1 && modifier.isEndOfIterations(config.getEndOfIterations());
+    }
 
     private void _ifHasBeenExceededThenThrowException() {
         if(_hasBeenExceeded())
@@ -68,20 +83,5 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
 
     private boolean _hasBeenExceeded() {
         return config.getLimitNumberIterations() > -1 && modifier.hasBeenExceeded(config.getLimitNumberIterations());
-    }
-    
-    private boolean _isEndOfIterations() {
-        return config.getEndOfIterations() > -1 && modifier.isEndOfIterations(config.getEndOfIterations());
-    }
-    
-    private synchronized RecursiveResult<R> _runAndResult(RecursiveNode<D> node) {
-        modifier.reset();
-        modifier.incrementIterations();
-        if(config.isToExecute(node))
-            modifier.execute(node.data());
-        if(_isEnd(node))
-            return modifier.snapshot();
-        _step(node);
-        return modifier.snapshot();
     }
 }

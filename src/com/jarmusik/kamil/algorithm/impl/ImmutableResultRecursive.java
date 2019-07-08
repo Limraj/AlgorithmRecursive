@@ -15,10 +15,10 @@ class ImmutableResultRecursive<D, R> extends AbstractModifierResultRecursive<D, 
     private final R reset;
     private R result;
     
-    public ImmutableResultRecursive(BiFunction<D, R, R> toExecute, R result) {
+    public ImmutableResultRecursive(BiFunction<D, R, R> toExecute, R start) {
         this.toExecute = toExecute;
-        this.reset = result;
-        this.result = result;
+        this.reset = start;
+        this.result = start;
     }
 
     @Override
