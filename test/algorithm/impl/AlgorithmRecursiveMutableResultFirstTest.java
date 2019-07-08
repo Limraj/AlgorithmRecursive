@@ -5,15 +5,16 @@
  */
 package algorithm.impl;
 
-import algorithm.AlgorithmRecursive;
-import impl.settlement_to_test.SettlementNode;
-import impl.settlement_to_test.SettlementResult;
-import impl.settlement_to_test.Settlement;
-import impl.settlement_to_test.SettlementsAggregator;
+import com.jarmusik.kamil.algorithm.impl.AlgorithmRecursiveBuilder;
+import com.jarmusik.kamil.algorithm.AlgorithmRecursive;
+import com.jarmusik.kamil.impl.settlement_to_test.SettlementNode;
+import com.jarmusik.kamil.impl.settlement_to_test.SettlementResult;
+import com.jarmusik.kamil.impl.settlement_to_test.Settlement;
+import com.jarmusik.kamil.impl.settlement_to_test.SettlementsAggregator;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import algorithm.result.RecursiveResult;
+import com.jarmusik.kamil.algorithm.result.RecursiveResult;
 
 /**
  *

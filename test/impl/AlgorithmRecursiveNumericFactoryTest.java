@@ -5,7 +5,8 @@
  */
 package impl;
 
-import algorithm.AlgorithmRecursive;
+import com.jarmusik.kamil.impl.AlgorithmRecursiveNumericFactory;
+import com.jarmusik.kamil.algorithm.AlgorithmRecursive;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.math.BigInteger;
