@@ -18,13 +18,13 @@ class AlgorithmRecursiveConfiguration<D> {
     private final Predicate<RecursiveNode<D>> executeIf;
     private final Predicate<RecursiveNode<D>> finishIf;
     private final int limitNumberIterations;
-    private final int endOfIterations;
+    private final int endPostIterations;
 
-    public AlgorithmRecursiveConfiguration(int limitNumberIterations, Predicate<RecursiveNode<D>> executeIf, Predicate<RecursiveNode<D>> finishIf, int endOfIterations) {
+    public AlgorithmRecursiveConfiguration(int limitNumberIterations, Predicate<RecursiveNode<D>> executeIf, Predicate<RecursiveNode<D>> finishIf, int endPostIterations) {
         this.executeIf = executeIf;
         this.finishIf = finishIf;
         this.limitNumberIterations = limitNumberIterations;
-        this.endOfIterations = endOfIterations;
+        this.endPostIterations = endPostIterations;
     }
 
     public static class Builder<D> {
@@ -32,7 +32,7 @@ class AlgorithmRecursiveConfiguration<D> {
         private Predicate<RecursiveNode<D>> executeIf;
         private Predicate<RecursiveNode<D>> finishIf;
         private int limitNumberIterations;
-        private int endOfIterations;
+        private int endPostIterations;
 
         public Builder() {
         }
@@ -52,13 +52,13 @@ class AlgorithmRecursiveConfiguration<D> {
             return this;
         }
         
-        public Builder<D> endOfIterations(int endOfIterations) {
-            this.endOfIterations = endOfIterations;
+        public Builder<D> endPostIterations(int endPostIterations) {
+            this.endPostIterations = endPostIterations;
             return this;
         }
         
         public AlgorithmRecursiveConfiguration<D> build() {
-            return new AlgorithmRecursiveConfiguration<>(limitNumberIterations, executeIf, finishIf, endOfIterations);
+            return new AlgorithmRecursiveConfiguration<>(limitNumberIterations, executeIf, finishIf, endPostIterations);
         }
     }
 
@@ -74,7 +74,7 @@ class AlgorithmRecursiveConfiguration<D> {
         return limitNumberIterations;
     }
 
-    public int getEndOfIterations() {
-        return endOfIterations;
+    public int getEndPostIterations() {
+        return endPostIterations;
     }
 }

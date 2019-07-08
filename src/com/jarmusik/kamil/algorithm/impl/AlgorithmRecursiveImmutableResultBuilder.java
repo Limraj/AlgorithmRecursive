@@ -16,57 +16,48 @@ import com.jarmusik.kamil.algorithm.node.RecursiveNode;
  * @param <D>
  * @param <R>
  */
-public class AlgorithmRecursiveImmutableResultBuilder<D, R> {
+public class AlgorithmRecursiveImmutableResultBuilder<D, R> extends AbstractAlgorithmRecursiveBuilder<D, R> {
     
-    private Predicate<RecursiveNode<D>> executeIf;
-    private Predicate<RecursiveNode<D>> finishIf;
-    private BiFunction<D, R, R> toExecute;
-    private int limitNumberIterations;
-    private int endOfIterations;
-    private final RecursiveNode<D> start;
     private final R result;
-
-    AlgorithmRecursiveImmutableResultBuilder(RecursiveNode<D> start, R result) {
-        this.start = start;
+    private BiFunction<D, R, R> toExecute;
+    
+    public AlgorithmRecursiveImmutableResultBuilder(RecursiveNode<D> start, R result) {
+        super(start);
         this.result = result;
-        this.executeIf = a -> true;
-        this.finishIf = a -> false;
-        this.limitNumberIterations = -1;
-        this.endOfIterations = -1;
     }
-
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<RecursiveNode<D>> finishIf) {
-        this.finishIf = finishIf;
-        return this;
-    }
-
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<RecursiveNode<D>> executeIf) {
-        this.executeIf = executeIf;
-        return this;
-    }
-
+    
     public AlgorithmRecursiveImmutableResultBuilder<D, R> toExecute(BiFunction<D, R, R> toExecute) {
         this.toExecute = toExecute;
         return this;
     }
     
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> limitNumberIterations(int limitNumberIterations) {
-        this.limitNumberIterations = limitNumberIterations;
-        return this;
-    }
-    
-    public AlgorithmRecursiveImmutableResultBuilder<D, R> endPostIterations(int endOfIterations) {
-        this.endOfIterations = endOfIterations;
+    @Override
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> finishIf(Predicate<RecursiveNode<D>> finishIf) {
+        super.finishIf(finishIf);
         return this;
     }
 
+    @Override
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> executeIf(Predicate<RecursiveNode<D>> executeIf) {
+        super.executeIf(executeIf);
+        return this;
+    }
+
+    @Override
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> limitNumberIterations(int limitNumberIterations) {
+        super.limitNumberIterations(limitNumberIterations);
+        return this;
+    }
+
+    @Override
+    public AlgorithmRecursiveImmutableResultBuilder<D, R> endPostIterations(int endPostIterations) {
+        super.endPostIterations(endPostIterations);
+        return this;
+    }
+
+    @Override
     public AlgorithmRecursive<D, R> build() {
-        AlgorithmRecursiveConfiguration<D> config = new AlgorithmRecursiveConfiguration.Builder<D>()
-            .executeIf(executeIf)
-            .finishIf(finishIf)
-            .limitNumberIterations(limitNumberIterations)
-            .endOfIterations(endOfIterations)
-            .build();
-        return new AlgorithmRecursiveImpl<>(start, config, ModifierResultRecursive.immutableResult(toExecute, result));
+        super.modifier(ModifierResultRecursive.immutableResult(toExecute, result));
+        return super.build();
     }
 }

@@ -5,26 +5,26 @@
  */
 package com.jarmusik.kamil.algorithm.impl;
 
+import com.jarmusik.kamil.algorithm.node.RecursiveNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import com.jarmusik.kamil.algorithm.node.RecursiveNode;
 
 /**
  *
  * @author Kamil-Tomasz
  */
+@Deprecated
 public class AlgorithmRecursiveBuilder {
-    
-    public static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(RecursiveNode<D> start, R result) {
+    static <D, R> AlgorithmRecursiveImmutableResultBuilder<D, R> immutableResult(RecursiveNode<D> start, R result) {
         return new AlgorithmRecursiveImmutableResultBuilder<>(start, result);
     }
     
-    public static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(RecursiveNode<D> start, Supplier<R> instanceGenerator) {
+    static <D, R> AlgorithmRecursiveMutableResultBuilder<D, R> mutableResult(RecursiveNode<D> start, Supplier<R> instanceGenerator) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, instanceGenerator);
     }
     
-    public static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(RecursiveNode<D> start) {
+    static <D> AlgorithmRecursiveMutableResultBuilder<D, List<D>> aggregateResult(RecursiveNode<D> start) {
         return new AlgorithmRecursiveMutableResultBuilder<>(start, () -> new ArrayList<>());
     }
 }

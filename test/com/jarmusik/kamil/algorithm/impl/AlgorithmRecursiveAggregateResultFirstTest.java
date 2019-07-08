@@ -5,7 +5,6 @@
  */
 package com.jarmusik.kamil.algorithm.impl;
 
-import com.jarmusik.kamil.algorithm.impl.AlgorithmRecursiveBuilder;
 import com.jarmusik.kamil.algorithm.AlgorithmRecursive;
 import com.jarmusik.kamil.impl.settlement_to_test.SettlementNode;
 import com.jarmusik.kamil.impl.settlement_to_test.Settlement;
@@ -28,7 +27,7 @@ public class AlgorithmRecursiveAggregateResultFirstTest {
     @BeforeClass
     public static void initTest() {
         found = SettlementsAggregator.get("123").iterator().next();
-        aggregate = AlgorithmRecursiveBuilder
+        aggregate = AlgorithmRecursive
                 .aggregateResult(new SettlementNode(found))
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> a.data().getSearch().equals("yes"))

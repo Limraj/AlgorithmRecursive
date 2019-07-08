@@ -6,7 +6,6 @@
 package com.jarmusik.kamil.impl;
 
 import com.jarmusik.kamil.algorithm.AlgorithmRecursive;
-import com.jarmusik.kamil.algorithm.impl.AlgorithmRecursiveBuilder;
 import com.jarmusik.kamil.impl.number.FactorialNode;
 import com.jarmusik.kamil.impl.number.FibonacciNode;
 import java.math.BigInteger;
@@ -18,7 +17,7 @@ import java.math.BigInteger;
 public final class AlgorithmRecursiveNumericFactory {
 
     public static AlgorithmRecursive<Integer, BigInteger> factorial(int arg) {
-        return AlgorithmRecursiveBuilder.immutableResult(new FactorialNode(1), BigInteger.ONE)
+        return AlgorithmRecursive.immutableResult(new FactorialNode(1), BigInteger.ONE)
                         .finishIf(node -> node.data() >= arg)
                         .limitNumberIterations(6500)
                         .toExecute((a,result) -> result.multiply(BigInteger.valueOf(a)))
@@ -26,7 +25,7 @@ public final class AlgorithmRecursiveNumericFactory {
     }
     
     public static AlgorithmRecursive<int[], Integer> fibonacci(int arg) {
-        return AlgorithmRecursiveBuilder.immutableResult(new FibonacciNode(new int[]{0, 1}), 0)
+        return AlgorithmRecursive.immutableResult(new FibonacciNode(new int[]{0, 1}), 0)
                         .endPostIterations(arg)
                         .toExecute((a,result) -> a[0])
                         .build();
