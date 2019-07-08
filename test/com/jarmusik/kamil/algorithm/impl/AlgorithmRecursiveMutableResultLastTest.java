@@ -5,7 +5,6 @@
  */
 package com.jarmusik.kamil.algorithm.impl;
 
-import com.jarmusik.kamil.algorithm.impl.AlgorithmRecursiveBuilder;
 import com.jarmusik.kamil.algorithm.AlgorithmRecursive;
 import com.jarmusik.kamil.impl.settlement_to_test.SettlementNode;
 import com.jarmusik.kamil.impl.settlement_to_test.SettlementResult;
@@ -28,7 +27,7 @@ public class AlgorithmRecursiveMutableResultLastTest {
     @BeforeClass
     public static void initTest() {
         notFound = SettlementsAggregator.get("456").iterator().next();
-        mutable = AlgorithmRecursiveBuilder
+        mutable = AlgorithmRecursive
                 .mutableResult(new SettlementNode(notFound), () -> new SettlementResult())
                 .executeIf(a -> a.data().getSearch().equals("yes"))
                 .finishIf(a -> false)

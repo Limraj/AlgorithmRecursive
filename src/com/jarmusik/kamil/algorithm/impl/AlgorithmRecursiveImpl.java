@@ -73,7 +73,7 @@ final class AlgorithmRecursiveImpl<D, R> implements AlgorithmRecursive<D, R> {
     }
            
     private boolean _isEndOfIterations() {
-        return config.getEndOfIterations() > -1 && modifier.isEndOfIterations(config.getEndOfIterations());
+        return config.getEndPostIterations() > -1 && modifier.isEndOfIterations(config.getEndPostIterations());
     }
 
     private void _ifHasBeenExceededThenThrowException() {
