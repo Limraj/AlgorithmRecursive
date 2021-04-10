@@ -8,14 +8,15 @@ package com.gmail.jarmusik.kamil.impl.number;
 import com.gmail.jarmusik.kamil.algorithm.result.Result;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public class BigDecimalResult extends Result<BigDecimal> {
+public class BigIntegerResult extends Result<BigInteger> {
 
-    public BigDecimalResult(BigDecimal result) {
+    public BigIntegerResult(BigInteger result) {
         super(result);
     }
 }

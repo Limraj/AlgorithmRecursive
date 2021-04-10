@@ -9,6 +9,8 @@ import com.gmail.jarmusik.kamil.algorithm.AlgorithmRecursive;
 import com.gmail.jarmusik.kamil.impl.AlgorithmRecursiveNumericFactory;
 import java.util.List;
 import com.gmail.jarmusik.kamil.algorithm.result.RecursiveResult;
+import com.gmail.jarmusik.kamil.impl.number.BigIntegerResult;
+
 import java.math.BigInteger;
 
 /**
@@ -21,11 +23,21 @@ public class Start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AlgorithmRecursive<Integer, BigInteger> factor = AlgorithmRecursiveNumericFactory.factorial(4500);
+
+        AlgorithmRecursive<Integer, BigInteger> factor = AlgorithmRecursiveNumericFactory.factorial(6080);
         runAndPrintResult(factor);
         
-        AlgorithmRecursive<int[], Integer> fibonacci = AlgorithmRecursiveNumericFactory.fibonacci(7);
+        AlgorithmRecursive<int[], Integer> fibonacci = AlgorithmRecursiveNumericFactory.fibonacci(46);
         runAndPrintResult(fibonacci);
+
+        AlgorithmRecursive<long[], Long> fibonacci2 = AlgorithmRecursiveNumericFactory.fibonacciLong(92);
+        runAndPrintResult(fibonacci2);
+
+        AlgorithmRecursive<BigInteger[], BigInteger> fibonacci3 = AlgorithmRecursiveNumericFactory.fibonacciBig(5263);
+        runAndPrintResult(fibonacci3);
+
+        AlgorithmRecursive<BigInteger[], BigIntegerResult> fibonacci4 = AlgorithmRecursiveNumericFactory.fibonacciBigMuttable(8357);
+        runAndPrintResult(fibonacci4);
        
     }
     

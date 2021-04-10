@@ -5,33 +5,32 @@
  */
 package com.gmail.jarmusik.kamil.impl.number;
 
+import com.gmail.jarmusik.kamil.algorithm.node.RecursiveNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import com.gmail.jarmusik.kamil.algorithm.node.RecursiveNode;
 
 /**
  *
  * @author Kamil-Tomasz
  */
-public abstract class FibonacciNode<T extends Number> implements RecursiveNode<T[]> {
-    private final T[] data;
+public class FibonacciLongNode implements RecursiveNode<long[]> {
+    private final long[] data;
 
-    public FibonacciNode(T[] data) {
+    public FibonacciLongNode(long[] data) {
         this.data = data;
     }
 
     @Override
-    public List<RecursiveNode<T[]>> nodes() {
-        List<RecursiveNode<T[]>> nodes = new ArrayList<>();
-        nodes.add(create(data[0], data[1]));
+    public List<RecursiveNode<long[]>> nodes() {
+        List<RecursiveNode<long[]>> nodes = new ArrayList<>();
+        nodes.add(new FibonacciLongNode(new long[]{data[1], data[0]+data[1]}));
         return nodes;
     }
 
-    protected abstract FibonacciNode<T> create(T a, T b);
-
     @Override
-    public T[] data() {
+    public long[] data() {
         return data;
     }
 
